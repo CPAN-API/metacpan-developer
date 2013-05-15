@@ -38,7 +38,8 @@
 
 	To install any missing (newly required) perl modules, as root run
 
-		/home/metacpan/bin/A_SCRIPT_WE_STILL_NEED_TO_WRITE
+		cd <to the mount as listed below>
+		/home/metacpan/bin/install_modules --installdeps .
 
 	- metacpan-web is the web front end
 		- mounted as /home/metacpan/metacpan.org
