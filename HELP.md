@@ -8,3 +8,9 @@
 	- Shutdown the box,
 	- Go to 'display' options for the VM, then 'remote display' and 'enable server'
 	- Then start the VM through VirtualBox and you will see a large console
+
+## Problems running a script?
+
+- Make sure you have the right perl... run
+
+		source /home/metacpan/.metacpanrc
