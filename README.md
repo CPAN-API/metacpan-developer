@@ -59,4 +59,8 @@
 
 	SSH: ssh -p 2222 root@localhost  (password vagrant)
 
+- Problems?
+
+	See our [HELP](HELP.md) page, or ask on #metacpan (irc.perl.org), or open an [issue](https://github.com/CPAN-API/metacpan-developer/issues)
+
 
