@@ -21,7 +21,7 @@
 
 - Install [Vagrant](http://downloads.vagrantup.com/) (1.2.2+) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (4.2.12+)
 
-		cd metacpan-ddeveloper
+		cd metacpan-developer
 
 - Start the virtual machine (first run will download our .box disk image ~920MB)
 
