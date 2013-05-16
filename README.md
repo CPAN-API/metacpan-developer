@@ -2,7 +2,15 @@
 
 ## We are still testing this setup...
 
--  Check out this repo
+- You will need:
+
+	- [Vagrant](http://downloads.vagrantup.com/) (1.2.2 or later)
+	- [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (4.2.12 or later)
+	- [A git client](http://git-scm.com/downloads)
+	- An ssh client if not build in, [Windows users see this](http://docs-v1.vagrantup.com/v1/docs/getting-started/ssh.html).
+	- To be able to download about 900MB of data on the first run
+
+-  Check out this repo. 
 
 		git clone git://github.com/CPAN-API/metacpan-developer.git
 
@@ -19,15 +27,13 @@
 		git clone git://github.com/CPAN-API/cpan-api.git
 		git clone git://github.com/CPAN-API/metacpan-web.git
 
-- Install [Vagrant](http://downloads.vagrantup.com/) (1.2.2+) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (4.2.12+)
+		cd ../metacpan-developer
 
-		cd metacpan-developer
-
-- Start the virtual machine (first run will download our .box disk image ~920MB)
+- Start the virtual machine (first run will download our .box disk image ~900MB)
 
 		vagrant up
 
-- Connect to the vm and run our puppet setup [Windows users - an ssh client is needed](http://docs-v1.vagrantup.com/v1/docs/getting-started/ssh.html)
+- Connect to the vm and run our puppet setup. 
 
 		vagrant ssh
 		sudo su -     (to become root)
