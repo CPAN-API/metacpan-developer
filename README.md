@@ -27,7 +27,7 @@
 
 		vagrant up
 
-- Connect to the vm and run our puppet setup
+- Connect to the vm and run our puppet setup [Windows users - an ssh client is needed](http://docs-v1.vagrantup.com/v1/docs/getting-started/ssh.html)
 
 		vagrant ssh
 		sudo su -     (to become root)
