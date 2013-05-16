@@ -1,4 +1,4 @@
-# Creating and managing virtual development machines for Metacpan
+# Virtual development machine for the metacpan project
 
 ## We are still testing this setup...
 
