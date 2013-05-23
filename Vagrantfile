@@ -11,4 +11,8 @@ Vagrant::Config.run do |config|
   config.vm.share_folder('v-puppet', '/etc/puppet', '../metacpan/metacpan-puppet')
   config.vm.share_folder('v-meta-api', '/home/metacpan/api.metacpan.org', '../metacpan/cpan-api')
   config.vm.share_folder('v-meta-web', '/home/metacpan/metacpan.org', '../metacpan/metacpan-web')
+  config.vm.share_folder('v-meta-explore',
+  				'/home/metacpan/explorer.metacpan.org',
+  				'../metacpan/metacpan-explorer')
+
 end
