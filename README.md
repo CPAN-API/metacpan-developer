@@ -39,11 +39,7 @@
         vagrant ssh
         sudo su -     (to become root)
 
-- To edit and test
-
-    Make changes in your checked out 'metacpan' repos and restart the service or use the run.sh script for puppet
-
-    To install any missing (newly required) perl modules, as root run
+- To install any missing (newly required) perl modules, as root run
 
         cd <to the mount as listed below>
         /home/metacpan/bin/install_modules --installdeps .
@@ -58,6 +54,10 @@
         - mounted as /etc/puppet
         - /etc/puppet/run.sh
 
+- To edit and test
+
+    Make changes in your checked out 'metacpan' repos and restart the service or use the run.sh script for puppet
+
 - To connect to other services
 
     WEB: [http://localhost:5001/](http://localhost:5001/)
@@ -65,6 +65,34 @@
     API: [http://localhost:5000/](http://localhost:5000/)
 
     SSH: ssh -p 2222 root@localhost  (password vagrant)
+
+- Setup a CPAN mirror
+
+    If you are working on the API, you will need a CPAN mirror to load into ElasticSearch.  A full CPAN
+    mirror is going to take up around 4GB.
+    
+    Log in as root.  Make sure your Perl path is pointing to Perlbrew:
+
+        source /home/metacpan/.metacpanrc
+        
+    Use CPAN to find a good mirror:
+    
+        cpanm -n CPAN
+        cpan -P
+
+    Then load up CPAN::Mini and download the mirror:
+    
+        cpanm CPAN::Mini
+        minicpan -l /usr/share/mirrors/cpan -r [mirror URL]
+        wget -O /usr/share/mirrors/cpan/authors/00whois.xml [mirror URL]/authors/00whois.xml
+
+- Initialize the API
+
+        cd /home/metacpan/api.metacpan.org
+        bin/metacpan mapping --delete
+        bin/metacpan release /usr/share/mirrors/cpan/authors/id/
+        bin/metacpan latest --cpan /usr/share/mirrors/cpan
+        bin/metacpan author --cpan /usr/share/mirrors/cpan
 
 - Problems?
 
