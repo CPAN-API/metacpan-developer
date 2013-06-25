@@ -14,3 +14,9 @@
 - Make sure you have the right perl... run
 
 		source /home/metacpan/.metacpanrc
+
+## Where are the log files?
+
+- /opt/elasticsearch/logs
+- /var/www/<site>/logs
+- /home/metacpan/api.metacpan.org/var/log/
