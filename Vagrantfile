@@ -1,6 +1,6 @@
 Vagrant::Config.run do |config|
 
-  config.vm.box_url = "http://vmbox.metacpan.org/mc_base001.box"
+  config.vm.box_url = "http://vmbox.metacpan.org/mcwheezy_vm_base_001_32.box"
   config.vm.box = "mcbase"
 
   config.vm.provision :shell, :path => 'provision.sh'
