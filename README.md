@@ -67,8 +67,31 @@
 - To edit and test
 
     Make changes in your checked out 'metacpan' repos and restart the service or use the run.sh script for puppet
+
+- To connect to services on the VM
+
+    WEB: [http://localhost:5001/](http://localhost:5001/)
+
+    API: [http://localhost:5000/](http://localhost:5000/)
+
+    SSH: `vagrant ssh`
+
+- Running the metacpan-web test suite
+
+    You'll want to run the suite at least once before getting started to make sure the VM has a clean bill of health.
     
-- Running the test suite
+    ```bash
+    vagrant ssh
+    sudo su metacpan
+    cd ~/metacpan.org
+    source ~/.metacpanrc
+    prove -lvr t
+    ```
+    
+    If you're not planning to work on the API itself, congratulations!  You're ready to start hacking.  If you do
+    need to work on the VM, please read on.
+    
+- Running the API test suite
 
     SSH into the box.  Stop the live ElasticSearch and start a test instance.  If you have a lot of RAM allocated 
     to your box, you may not need to stop the live ElasticSearch.  If you haven't done so already, bump up the RAM
@@ -89,14 +112,6 @@
     ```
     
     Note that -r has not been passed to prove when running the tests.
-
-- To connect to other services
-
-    WEB: [http://localhost:5001/](http://localhost:5001/)
-
-    API: [http://localhost:5000/](http://localhost:5000/)
-
-    SSH: `ssh -p 2222 root@localhost  # password = vagrant`
 
 - Setup a CPAN mirror
 
