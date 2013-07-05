@@ -67,6 +67,28 @@
 - To edit and test
 
     Make changes in your checked out 'metacpan' repos and restart the service or use the run.sh script for puppet
+    
+- Running the test suite
+
+    SSH into the box.  Stop the live ElasticSearch and start a test instance.  If you have a lot of RAM allocated 
+    to your box, you may not need to stop the live ElasticSearch.  If you haven't done so already, bump up the RAM
+    allocated to this machine to 1.5 GB.  (We keep the default low for the people who only want to work on the 
+    metacpan-web repo).  You'll find the memory settings in VirtualBox under:
+    
+    Settings => System => Motherboard => Base Memory
+
+    ```bash
+    vagrant ssh
+    sudo /etc/init.d/elasticsearch stop
+    sudo /opt/elasticsearch-0.20.2/bin/elasticsearch -f -Des.http.port=9900 -Des.cluster.name=testing
+
+    sudo su metacpan
+    cd ~/api.metacpan.org
+    source ~/.metacpanrc
+    prove -lv t
+    ```
+    
+    Note that -r has not been passed to prove when running the tests.
 
 - To connect to other services
 
