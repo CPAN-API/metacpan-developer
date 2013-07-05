@@ -7,7 +7,8 @@
     - [Vagrant](http://downloads.vagrantup.com/) (1.2.2 or later)
     - [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (4.2.12 or later)
     - [A git client](http://git-scm.com/downloads)
-    - An ssh client if not build in, [Windows users see this](http://docs-v1.vagrantup.com/v1/docs/getting-started/ssh.html).
+    - An ssh client if not build in, [Windows users see
+      this](http://docs-v1.vagrantup.com/v1/docs/getting-started/ssh.html).
     - To be able to download about 900MB of data on the first run
 
 -  Check out this repo.
@@ -16,11 +17,11 @@
     git clone git://github.com/CPAN-API/metacpan-developer.git
     ```
 
--  Setup repositories
+-  Set Up repositories
 
-    Make a 'metacpan' directory at the same level and check out the repositories
-    which will be shared into the virtual machine, below we are cloning
-    the official repositories as read only - you could of course either
+    Make a 'metacpan' directory at the same level and check out the
+    repositories which will be shared into the virtual machine, below we are
+    cloning the official repositories as read only - you could of course either
     fork any of these, or just add your own fork as a remote to push to.
 
     ```bash
@@ -34,7 +35,8 @@
     cd ../metacpan-developer
     ```
 
-- Start the virtual machine (first run will download our .box disk image ~900MB)
+- Start the virtual machine (first run will download our .box disk image
+  ~900MB)
 
     ```bash
     vagrant up
@@ -47,7 +49,15 @@
     sudo su -     # to become root
     ```
 
-- To install any missing (newly required) perl modules, as root run
+- To edit and test
+
+    Your workflow from this point will be to edit the MetaCPAN repositories
+    which you have just checkout out to your local machine.  After you have
+    made your changes, you can ssh to your box and restart the relevant
+    services.  You will not develop on the VM directly.  (See below for
+    instructions on how to run puppet).
+
+    To install any missing (newly required) perl modules, as root run
 
     ```bash
     cd <to the mount as listed below>
@@ -205,6 +215,7 @@
 
 - Problems?
 
-    See our [HELP](HELP.md) page, or ask on #metacpan (irc.perl.org), or open an [issue](https://github.com/CPAN-API/metacpan-developer/issues)
+    See our [HELP](HELP.md) page, or ask on #metacpan (irc.perl.org), or open
+    an [issue](https://github.com/CPAN-API/metacpan-developer/issues)
 
 
