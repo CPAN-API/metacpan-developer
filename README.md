@@ -20,7 +20,17 @@
 -  Set Up repositories
 
     Make a 'metacpan' directory at the same level and check out the
-    repositories which will be shared into the virtual machine, below we are
+    repositories which will be shared into the virtual machine
+    to create a structure like this:
+
+        ├── metacpan
+        │   ├── cpan-api
+        │   ├── metacpan-explorer
+        │   ├── metacpan-puppet
+        │   └── metacpan-web
+        └── metacpan-developer
+
+    Below we are
     cloning the official repositories as read only - you could of course either
     fork any of these, or just add your own fork as a remote to push to.
 
