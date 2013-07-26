@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# The puppet master needs a 'search' line in order to resolve correctly
+# but resolv.conf is unreliable because it gets populated by the host OS.
+grep -E '^search ' /etc/resolv.conf || \
+  echo 'search metacpan.org' >> /etc/resolv.conf
+
 # Vagrant shared directories get owned by the vagrant user
 # but some programs need certain (usually sub-) dirs to be user-writable.
 # Create tmp dirs and mount them on top of the share to work around this.
