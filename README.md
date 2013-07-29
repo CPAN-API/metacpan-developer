@@ -113,18 +113,33 @@
     
 - Running the API test suite
 
-    SSH into the box.  Stop the live ElasticSearch and start a test instance.  If you have a lot of RAM allocated 
-    to your box, you may not need to stop the live ElasticSearch.  If you haven't done so already, bump up the RAM
-    allocated to this machine to 1.5 GB.  (We keep the default low for the people who only want to work on the 
-    metacpan-web repo).  You'll find the memory settings in VirtualBox under:
+    If you have a lot of RAM allocated to your box, you may not need to stop
+    the live ElasticSearch.  Otheriwise, if you haven't done so already, bump
+    up the RAM allocated to this machine to 1.5 GB.  (We keep the default low
+    for the people who only want to work on the metacpan-web repo -- and you'll
+    need to halt the VM in order to update the RAM.)  You'll find the memory
+    settings in VirtualBox under:
     
     Settings => System => Motherboard => Base Memory
+
+    If you had to adjust the RAM, bring the VM up again.
+
+    SSH into the box.  Stop the live ElasticSearch and start a test instance,
+    as shown.  The '-f' option runs ElasticSearch in the foreground, so after
+    about a dozen lines of output, it's ready to go (you won't see a prompt)
+    and you can move on to the next step. (Just ^C to stop ElasticSearch when
+    you're done.)
 
     ```bash
     vagrant ssh
     sudo /etc/init.d/elasticsearch stop
     sudo /opt/elasticsearch-0.20.2/bin/elasticsearch -f -Des.http.port=9900 -Des.cluster.name=testing
+    ```
+    
+    SSH into the box again, and run the tests as shown.
 
+    ```bash
+    vagrant ssh
     sudo su metacpan
     cd ~/api.metacpan.org
     source ~/.metacpanrc
