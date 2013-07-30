@@ -11,8 +11,13 @@ grep -qE '^search ' /etc/resolv.conf || \
 function change_shared_dir_owner () {
   local user="$1" dest="$2"
   local src="/tmp/v-share-mounts/$dest"
+
   mkdir -p "$dest" "$src"
   chown "$user" "$src"
+
+  # Only proceed if not already mounted.
+  mount | grep -qF " $dest " && return
+
   mount --bind "$src" "$dest"
 }
 
