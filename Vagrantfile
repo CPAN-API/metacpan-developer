@@ -3,7 +3,7 @@ Vagrant::Config.run do |config|
   config.vm.box_url = "http://vmbox.metacpan.org/mcwheezy_vm_base_001_32.box"
   config.vm.box = "mcbase"
 
-  config.vm.provision :shell, :path => 'provision.sh'
+  config.vm.provision :shell, :path => 'provision/all.sh'
 
   config.vm.forward_port 5000, 5000 # api
   config.vm.forward_port 5001, 5001 # www
