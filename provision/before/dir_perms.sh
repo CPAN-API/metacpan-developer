@@ -23,7 +23,8 @@ change_shared_dir_owner metacpan /home/metacpan/metacpan.org/var
 
 # API test suite writes to multiple dirs.
 change_shared_dir_owner metacpan:vagrant /home/metacpan/api.metacpan.org/t/var/tmp
-change_shared_dir_owner metacpan:vagrant /home/metacpan/api.metacpan.org/var/tmp
+change_shared_dir_owner metacpan:vagrant /home/metacpan/api.metacpan.org/var/
+sudo -u metacpan mkdir -p /home/metacpan/api.metacpan.org/var/{tmp,log}
 
 # CPAN::Faker 0.008 mistakenly requires source dir to be writable.
 # https://github.com/CPAN-API/cpan-api/issues/277
