@@ -11,6 +11,8 @@ mods=(
 
   "AnyEvent::Curl::Multi"
 
+  CPAN::Changes
+
   Test::Aggregate::Nested~0.366
 )
 
