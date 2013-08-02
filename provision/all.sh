@@ -5,7 +5,7 @@ function exec_dir () {
   local dir="$1"
   [[ "${dir:0:1}" == "/" ]] || dir="/vagrant/provision/$dir"
   for exe in "$dir"/*; do
-    test -x "$exe" && echo "$exe" && "$exe"
+    test -x "$exe" && echo "# $exe" && "$exe"
   done
 }
 
