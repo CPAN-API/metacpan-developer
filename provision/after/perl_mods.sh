@@ -14,6 +14,9 @@ mods=(
   CPAN::Changes
 
   Test::Aggregate::Nested~0.366
+
+  # Not used by apps, just to ease debugging.
+  Carp::Always
 )
 
 # Get the right perl.
