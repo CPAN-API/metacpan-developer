@@ -5,9 +5,7 @@
 # are added we can specify them here temporarily until a new base vm is built.
 
 mods=(
-  # TODO: uncoment this when a new one is released
-  # https://github.com/rjbs/CPAN-Faker/issues/1
-  #"CPAN::Faker 0.009"
+  "CPAN::Faker 0.009"
 
   "AnyEvent::Curl::Multi"
 
