@@ -6,6 +6,7 @@
 
 mods=(
   "CPAN::Faker 0.009"
+  Parse::PMFile
 
   "AnyEvent::Curl::Multi"
 
