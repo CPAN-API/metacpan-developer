@@ -164,7 +164,20 @@
     prove -lv t
     ```
 
-    Note that -r has not been passed to prove when running the tests.
+    Note that, unlike the metacpan-web test suite, -r has not been passed to
+    prove when running the tests.
+
+    Once the test suite has been completed, stop the ElasticSearch test
+    instance with a ^C, and re-start the normal ElasticSearch. This should get
+    your system back to the state that it was in before you started running the
+    API test suite.
+
+    ```bash
+    # Test instance of elastic searching running ..
+    ^C
+    #  Test instance stops, does cleanup and returns you to a bash prompt.
+    sudo /etc/init.d/elasticsearch start
+    ```
 
 - Setup a CPAN mirror
 
