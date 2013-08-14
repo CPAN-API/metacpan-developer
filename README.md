@@ -260,7 +260,7 @@
     # Release processing will be the most time consuming
     # Around 10-15 distros a minute, or 40-50 hours for a full load
     # Use the --age parameter for partial loading (like --age 4320 for six months)
-    bin/metacpan release /usr/share/mirrors/cpan/authors/id/
+    bin/metacpan release /home/metacpan/CPAN/authors/id/
 
     # Around 60 distros a minute
     # Large/weird files (ie: Alien::Debian::Apt::PM) might timeout ES; re-run it if it chokes
