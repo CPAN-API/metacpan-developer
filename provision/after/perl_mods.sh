@@ -12,7 +12,7 @@ mods=(
 
   CPAN::Changes
 
-  Test::Aggregate::Nested~0.366
+  Test::Aggregate::Nested~0.371
 
   # Not used by apps, just to ease debugging.
   Carp::Always
