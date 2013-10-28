@@ -5,7 +5,9 @@
 # are added we can specify them here temporarily until a new base vm is built.
 
 mods=(
-  "CPAN::Faker 0.009"
+  "Module::Faker 0.015"
+  "CPAN::Faker 0.010"
+
   Parse::PMFile
 
   "AnyEvent::Curl::Multi"
