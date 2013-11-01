@@ -8,6 +8,8 @@ mods=(
   "Module::Faker 0.015"
   "CPAN::Faker 0.010"
 
+  "Catalyst::Runtime 5.90042"
+
   Parse::PMFile
 
   "AnyEvent::Curl::Multi"
