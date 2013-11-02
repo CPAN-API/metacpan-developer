@@ -14,6 +14,9 @@ mods=(
 
   "AnyEvent::Curl::Multi"
 
+  Module::Metadata~1.000012
+  Safe~2.35
+
   CPAN::Changes
 
   Test::Aggregate::Nested~0.371
