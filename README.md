@@ -52,6 +52,14 @@
     vagrant up
     ```
 
+- Run all the extra bits that were added after we created the .box file (you
+might need to run this each time you start up the machine or if we have made
+further changes)
+
+    ```bash
+    vagrant proivision
+    ```
+
 - Connect to the vm and run our puppet setup.
 
     ```bash
@@ -64,7 +72,7 @@
     There is anecdotal evidence that some VirtualBox VMs consume a great deal
     of CPU time, even when idle. A metacpan VM normally consumes about 5% of
     CPU when idle.
-    
+
     While everyone's setup is different, the following seems to work well (note
     that the VM will have to be halted before these settings can be changed):
 

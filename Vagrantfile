@@ -7,6 +7,7 @@ Vagrant::Config.run do |config|
 
   config.vm.forward_port 5000, 5000 # api
   config.vm.forward_port 5001, 5001 # www
+  config.vm.forward_port 80,   5080 # nginx
   config.vm.forward_port 9200, 9200 # production ES
   config.vm.forward_port 9900, 9900 # test ES
 
