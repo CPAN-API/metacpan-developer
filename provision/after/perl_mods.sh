@@ -20,6 +20,7 @@ mods=(
   CPAN::Changes
 
   Test::Aggregate::Nested~0.371
+  Test::Routine
 
   # Not used by apps, just to ease debugging.
   Carp::Always
