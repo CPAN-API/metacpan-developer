@@ -70,8 +70,7 @@ further changes)
     Your workflow from this point will be to edit the MetaCPAN repositories
     which you have just checkout out to your local machine.  After you have
     made your changes, you can ssh to your box and restart the relevant
-    services.  You will not develop on the VM directly.  (See below for
-    instructions on how to run puppet).
+    services.  You will not develop on the VM directly.
 
     To install any missing (newly required) perl modules, as root run
 
