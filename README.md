@@ -55,7 +55,7 @@ might need to run this each time you start up the machine or if we have made
 further changes)
 
     ```bash
-    vagrant proivision
+    vagrant provision
     ```
 
 - Connect to the vm
