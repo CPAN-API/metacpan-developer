@@ -89,7 +89,7 @@ further changes)
         - mounted as /etc/puppet
         - /etc/puppet/run.sh
 
-    Make changes in your checked out 'metacpan' repos and restart the service or use the run.sh script for puppet
+    Make changes in your checked out 'metacpan' repos and restart the service
 
 - To connect to services on the VM
 
