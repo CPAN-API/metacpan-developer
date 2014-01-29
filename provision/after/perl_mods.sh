@@ -24,6 +24,8 @@ mods=(
 
   # Not used by apps, just to ease debugging.
   Carp::Always
+
+  Carton
 )
 
 # Get the right perl.
