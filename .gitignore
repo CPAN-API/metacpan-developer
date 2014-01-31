@@ -1,2 +1,3 @@
 .vagrant
+.vagrant_ssh_as_metacpan_user
 .DS_Store

@@ -65,6 +65,10 @@ further changes)
     sudo su -     # to become root if you need it
     ```
 
+> If you're familiar with using `vagrant`,
+> **note** that you will be logged in as the metacpan user to keep things simple.
+> You shouldn't need to do anything as the `vagrant` user.
+
 - To edit and test
 
     Your workflow from this point will be to edit the MetaCPAN repositories
@@ -105,7 +109,6 @@ further changes)
 
     ```bash
     vagrant ssh
-    sudo su metacpan
     cd ~/metacpan.org
     source ~/.metacpanrc
     prove -lvr t
