@@ -5,14 +5,23 @@ Vagrant::Config.run do |config|
 
   config.vm.provision :shell, :path => 'provision/all.sh'
 
-  # Back-compat: ssh as 'metacpan' for ease of use, but if that isn't setup
-  # we need to do the setup as the 'vagrant' user.
-  if File.exists?('.vagrant_ssh_as_metacpan_user')
+
+  # Do 'vagrant ssh' as 'metacpan' user for ease of use.
+  # Until we generate a vm that has the authorized_keys we need to fix it with a provisioner.
+  # So we need a way to identify (outside of the vm) if this has been done.
+  # Compare mtime to vm id file to re-sync after a destroy/reimport.
+  ssh_as_metacpan_files = %w[.vagrant_ssh_as_metacpan_user .vagrant/machines/default/virtualbox/id].map do |file|
+    # Use mtime if exists, else use 0 for root file and now for vbox id so cmp fails if either is missing.
+    File.exists?(file) ? File.mtime(file).to_i : file =~ %r{/} ? Time.now.to_i : 0
+  end
+
+  if ssh_as_metacpan_files[0] >= ssh_as_metacpan_files[1]
     config.ssh.username = 'metacpan'
   else
     config.vm.provision :shell,
       :inline => '/bin/cp -f /home/{vagrant,metacpan}/.ssh/authorized_keys && touch /vagrant/.vagrant_ssh_as_metacpan_user'
   end
+
 
   config.vm.forward_port 5000, 5000 # api
   config.vm.forward_port 5001, 5001 # www
