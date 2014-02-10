@@ -22,7 +22,7 @@
 
 ## Problems starting the VM
 
-- Make sure you have recent versions [Vagrant](http://downloads.vagrantup.com/) (1.2.2+) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (4.2.12+)
+- Make sure you have recent versions [Vagrant](http://www.vagrantup.com/downloads.html) (1.2.2+) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (4.2.12+)
 
 - Open VirtualBox
 	- Shutdown the box,
