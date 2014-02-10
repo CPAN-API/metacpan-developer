@@ -2,7 +2,7 @@
 
 - You will need:
 
-    - [Vagrant](http://downloads.vagrantup.com/) (1.2.2 or later)
+    - [Vagrant](http://www.vagrantup.com/downloads.html) (1.2.2 or later)
     - [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (4.2.12 or later)
     - [A git client](http://git-scm.com/downloads)
     - An ssh client if not build in, [Windows users see
