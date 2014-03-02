@@ -1,0 +1,6 @@
+# Don't do eol conversion.
+# Leave EOL as LF for scripts so that they work properly in the linux vm.
+
+*.sh           eol=lf
+/provision/*   eol=lf
+/provision/*/* eol=lf
