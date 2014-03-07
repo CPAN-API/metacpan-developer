@@ -11,6 +11,7 @@ mods=(
   "Catalyst::Runtime 5.90042"
 
   Parse::PMFile
+  HTML::Escape
 
   "AnyEvent::Curl::Multi"
 
