@@ -29,6 +29,12 @@
 	- Go to 'display' options for the VM, then 'remote display' and 'enable server'
 	- Then start the VM through VirtualBox and you will see a large console
 
+- Sometimes the VM can enter a "Guru Meditation" state during a 'vagrant up' command. In such a situation,
+	- Force stop the VM from the terminal: VBoxManage controlvm <VM Name> poweroff
+	- Go to the 'Settings' options for the VM from the Virtual Box.
+	- Go to the 'System' tab, and then the 'Processors' tab. Enable the 'PAE mode' by checking the option.
+	- Now do a 'vagrant up'.
+
 ## Problems running a script?
 
 - Make sure you have the right perl... run
