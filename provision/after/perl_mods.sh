@@ -22,6 +22,7 @@ mods=(
 
   Test::Aggregate::Nested~0.371
   Test::Routine
+  Test::More~0.99
 
   # Not used by apps, just to ease debugging.
   Carp::Always
