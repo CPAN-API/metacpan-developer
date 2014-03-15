@@ -28,6 +28,11 @@ mods=(
   Carp::Always
 
   Carton
+
+  # README_API.md describes using these to get a mirror.
+  CPAN
+  CPAN::Mini
+
 )
 
 # Get the right perl.

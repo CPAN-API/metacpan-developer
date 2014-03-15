@@ -68,7 +68,6 @@ Setup everything as per the main [README](README.md)...
     Use CPAN to find a good mirror:
 
     ```bash
-    cpanm -n CPAN
     cpan -P
     export CPAN_MIRROR=[mirror URL]
     ```
@@ -76,7 +75,6 @@ Setup everything as per the main [README](README.md)...
     Then load up CPAN::Mini and download the mirror:
 
     ```bash
-    cpanm CPAN::Mini
     minicpan -l /home/metacpan/CPAN -r $CPAN_MIRROR
     wget -O /home/metacpan/CPAN/authors/00whois.xml $CPAN_MIRROR/authors/00whois.xml
     wget -O /home/metacpan/CPAN/modules/06perms.txt $CPAN_MIRROR/modules/06perms.txt
