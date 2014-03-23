@@ -1,21 +1,17 @@
-Vagrant::Config.run do |config|
-
+Vagrant.configure("2") do |config|
   config.vm.box_url = "http://vmbox.metacpan.org/mcwheezy_vm_base_001_32.box"
   config.vm.box = "mcbase"
 
   config.vm.provision :shell, :path => 'provision/all.sh'
 
-  config.vm.forward_port 5000, 5000 # api
-  config.vm.forward_port 5001, 5001 # www
-  config.vm.forward_port 80,   5080 # nginx
-  config.vm.forward_port 9200, 9200 # production ES
-  config.vm.forward_port 9900, 9900 # test ES
+  config.vm.network "forwarded_port", guest: 5000, host: 5000 # api
+  config.vm.network "forwarded_port", guest: 5001, host: 5001 # www
+  config.vm.network "forwarded_port", guest: 80, host: 5080 # nginx
+  config.vm.network "forwarded_port", guest: 9200, host: 9200 # production ES
+  config.vm.network "forwarded_port", guest: 9900, host: 9900 # test ES
 
-  config.vm.share_folder('v-puppet', '/etc/puppet', '../metacpan/metacpan-puppet')
-  config.vm.share_folder('v-meta-api', '/home/metacpan/api.metacpan.org', '../metacpan/cpan-api')
-  config.vm.share_folder('v-meta-web', '/home/metacpan/metacpan.org', '../metacpan/metacpan-web')
-  config.vm.share_folder('v-meta-explore',
-  				'/home/metacpan/explorer.metacpan.org',
-  				'../metacpan/metacpan-explorer')
-
+  config.vm.synced_folder('../metacpan/metacpan-puppet', '/etc/puppet')
+  config.vm.synced_folder('../metacpan/cpan-api', '/home/metacpan/api.metacpan.org')
+  config.vm.synced_folder('../metacpan/metacpan-web', '/home/metacpan/metacpan.org')
+  config.vm.synced_folder('../metacpan/metacpan-explorer', '/home/metacpan/explorer.metacpan.org')
 end
