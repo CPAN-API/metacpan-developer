@@ -33,6 +33,8 @@ mods=(
   CPAN
   CPAN::Mini
 
+  Data::Pageset
+
 )
 
 # Get the right perl.
