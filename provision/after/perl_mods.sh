@@ -40,6 +40,8 @@ mods=(
 # Get the right perl.
 . /home/metacpan/.metacpanrc
 
+# TODO: Get a real list of not-satisfied mods and just install those for each project.
+
 for mod in "${mods[@]}"; do
   # If it can't be loaded attempt to install it.
   perl -M"${mod/\~/ }" -e1 &> /dev/null || \
