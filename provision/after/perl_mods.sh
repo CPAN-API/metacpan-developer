@@ -23,6 +23,8 @@ mods=(
   Test::Aggregate::Nested~0.371
   Test::Routine
   Test::More~0.99
+  Perl::Tidy
+  Test::Code::TidyAll
 
   # Not used by apps, just to ease debugging.
   Carp::Always
@@ -34,6 +36,9 @@ mods=(
   CPAN::Mini
 
   Data::Pageset
+
+  JSON~2.90
+  JSON::XS~3.01
 
 )
 
