@@ -10,8 +10,8 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 9200, host: 9200 # production ES
   config.vm.network "forwarded_port", guest: 9900, host: 9900 # test ES
 
-  config.vm.synced_folder('../metacpan/metacpan-puppet', '/etc/puppet')
-  config.vm.synced_folder('../metacpan/cpan-api', '/home/metacpan/api.metacpan.org')
-  config.vm.synced_folder('../metacpan/metacpan-web', '/home/metacpan/metacpan.org')
-  config.vm.synced_folder('../metacpan/metacpan-explorer', '/home/metacpan/explorer.metacpan.org')
+  config.vm.synced_folder('src/metacpan-puppet', '/etc/puppet')
+  config.vm.synced_folder('src/cpan-api', '/home/metacpan/api.metacpan.org')
+  config.vm.synced_folder('src/metacpan-web', '/home/metacpan/metacpan.org')
+  config.vm.synced_folder('src/metacpan-explorer', '/home/metacpan/explorer.metacpan.org')
 end

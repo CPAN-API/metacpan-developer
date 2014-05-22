@@ -16,32 +16,10 @@
     ```
 
 -  Set Up repositories
-
-    Make a 'metacpan' directory at the same level and check out the
-    repositories which will be shared into the virtual machine
-    to create a structure like this:
-
-        ├── metacpan
-        │   ├── cpan-api
-        │   ├── metacpan-explorer
-        │   ├── metacpan-puppet
-        │   └── metacpan-web
-        └── metacpan-developer
-
-    Below we are
-    cloning the official repositories as read only - you could of course either
-    fork any of these, or just add your own fork as a remote to push to.
-
-    ```bash
-    mkdir metacpan
-    cd metacpan
-    git clone git://github.com/CPAN-API/metacpan-puppet.git
-    git clone git://github.com/CPAN-API/cpan-api.git
-    git clone git://github.com/CPAN-API/metacpan-web.git
-    git clone git://github.com/CPAN-API/metacpan-explorer.git
-
-    cd ../metacpan-developer
-    ```
+   ````bash
+    cd metacpan-developer
+    sh bin/init.sh
+   ```
 
 - Start the virtual machine (first run will download our .box disk image
   ~900MB)
