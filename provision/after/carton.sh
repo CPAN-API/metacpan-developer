@@ -11,13 +11,7 @@ carton_dirs=(
 
 for dir in "${carton_dirs[@]}"; do
 
-  mkdir -p $dir/local
-  mkdir -p $dir/.carton
-
-  # Carton stores cache/config in ./.carton/ dir.
-  change_shared_dir_owner metacpan:vagrant $dir/local
-  change_shared_dir_owner metacpan:vagrant $dir/.carton
-
-  # TODO: cd $dir; carton install ?
+    cd $dir;
+    /usr/local/perlbrew/perls/perl-5.16.2/bin/carton install;
 
 done
