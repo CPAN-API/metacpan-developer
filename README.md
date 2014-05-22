@@ -42,7 +42,7 @@ then add the following to your /etc/resolv.conf as the first nameserver:
     ```bash
     nameserver 8.8.8.8
     ```
-    
+
 So, your /etc/resolv.conf should look something like
 
     ```bash
@@ -51,7 +51,7 @@ So, your /etc/resolv.conf should look something like
     nameserver 8.8.8.8
     nameserver 10.0.2.3
     ```
-    
+
 - Connect to the vm
 
     ```bash
@@ -114,7 +114,7 @@ So, your /etc/resolv.conf should look something like
  * [HELP](HELP.md) page (including VM tuning notes)
 
 ### Problems?
-
+ * If you have trouble mounting the folders, check this fix for [guest additions](http://stackoverflow.com/questions/22717428/vagrant-error-failed-to-mount-folders-in-linux-guest)
  * Ask on #metacpan (irc.perl.org), or open an [issue](https://github.com/CPAN-API/metacpan-developer/issues)
 
 
