@@ -58,6 +58,16 @@ Setup everything as per the main [README](README.md)...
     mirror is going to take up around 4GB.  A good mirror and a good connection should be able to knock
     that out in a couple of hours.
 
+    If you just want a few files to index (you don't need a full CPAN) run this
+    script as the vagrant user.  You'll be ready in a few minutes.
+
+    ```bash
+    vagrant ssh
+    sh /vagrant/bin/partial-cpan-mirror.sh
+    ```
+
+    Need the whole thing?  Read on.
+
     Log in as metacpan and make sure your Perl path is pointing to Perlbrew:
 
     ```bash
