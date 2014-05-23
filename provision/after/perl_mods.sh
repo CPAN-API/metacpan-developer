@@ -5,36 +5,12 @@
 # are added we can specify them here temporarily until a new base vm is built.
 
 mods=(
-  "Module::Faker 0.015"
-  "CPAN::Faker 0.010"
-
-  "Catalyst::Runtime 5.90042"
-
-  Parse::PMFile
-  HTML::Escape
-
-  "AnyEvent::Curl::Multi"
-
-  Module::Metadata~1.000012
-  Safe~2.35
-
-  CPAN::Changes
-
-  Test::Aggregate::Nested~0.371
-  Test::Routine
-  Test::More~0.99
-
-  # Not used by apps, just to ease debugging.
-  Carp::Always
-
   Carton
+  Daemon::Control
 
   # README_API.md describes using these to get a mirror.
   CPAN
   CPAN::Mini
-
-  Data::Pageset
-
 )
 
 # Get the right perl.
