@@ -75,8 +75,20 @@ Setup everything as per the main [README](README.md)...
     Oh, you want to actually ***use*** your new CPAN mirror?  Well, that's going to take some adjustments to
     the VirtualBox.
 
-    First, make sure the VM is down via `vagrant halt`.  Fire up VirtualBox manager (not Vagrant) and
-    change the following settings:
+    You can change the amount of memory and the number of CPUs assigned to your vm
+    by setting some simple environment variables:
+
+    ```bash
+    METACPAN_DEVELOPER_MEMORY=1536 METACPAN_DEVELOPER_CPUS=2 vagrant reload
+    ```
+
+    The `vagrant reload` command is a shortcut for halting and rebooting the vm
+    and vagrant will adjust the resources for you before it brings it back up.
+    Memory should be the number of megabytes (1.5 GB => 1536 MB).
+
+    Alternatively you can use the VirtualBox Manager (not Vagrant) to change the settings:
+    Right-click on your developer vm, select "Settings", go to the "System" tab,
+    and adjust the "Memory" and "Processor" settings as necessary:
 
     * **Memory:** 1.5GB or more
     * **CPU:** Half of your total cores

@@ -2,6 +2,21 @@ Vagrant.configure("2") do |config|
   config.vm.box_url = "http://vmbox.metacpan.org/mcwheezy_vm_base_001_32.box"
   config.vm.box = "mcbase"
 
+  # Use METACPAN_DEVELOPER_* env vars to set vm hardware resources.
+  vbox_custom = %w[cpus memory].map do |hw|
+    key = "METACPAN_DEVELOPER_#{hw.upcase}"
+    ENV[key] ? ["--#{hw}", ENV[key]] : []
+  end.flatten
+
+  if not vbox_custom.empty?
+    config.vm.provider :virtualbox do |vb|
+      vb.customize [
+        "modifyvm", :id,
+        *vbox_custom
+      ]
+    end
+  end
+
   config.vm.provision :shell, :path => 'provision/all.sh'
 
   config.vm.network "forwarded_port", guest: 5000, host: 5000 # api
