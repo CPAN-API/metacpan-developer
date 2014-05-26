@@ -96,16 +96,8 @@ Setup everything as per the main [README](README.md)...
     Both of these settings greatly increase how fast the API loading takes, and in the case of memory,
     impacts whether ES can even operate within the footprint.
 
-    ```bash
-    # Boot it back up
-    vagrant up && vagrant ssh
-
-    # Upgrade ES's memory
-    sudo su
-    vi /etc/puppet/modules/elasticsearch/manifests/init.pp  # or find it in your linked puppet repo
-    # set $memory = 1024 and save
-    /etc/puppet/run.sh
-    ```
+    After changing the vm settings run `vagrant provision` again
+    to make sure things are reconfigured appropriately.
 
     Now, you are ready to run through the API loader commands.  Depending on how much data you want to
     load, it's going to take a while to process.  Processing times and other hints are listed below,
