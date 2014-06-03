@@ -4,28 +4,18 @@ Setup everything as per the main [README](README.md)...
 
 - Running the API test suite
 
-    If you have a lot of RAM allocated to your box, you may not need to stop
-    the live ElasticSearch.  Otheriwise, if you haven't done so already, bump
-    up the RAM allocated to this machine to 1.5 GB.  (We keep the default low
-    for the people who only want to work on the metacpan-web repo -- and you'll
-    need to halt the VM in order to update the RAM.)  You'll find the memory
-    settings in VirtualBox under:
+    The vm has an instance of elasticsearch running on the default port of 9200.
+    This is the instance that the API will use for development
+    to store any minicpan data you index.
 
-    Settings => System => Motherboard => Base Memory
+    Additionally the vm already has a second instance of elasticsearch running on port 9900
+    (using a small amount of memory and an alternate cluster name)
+    which the test suite will use.
 
-    If you had to adjust the RAM, bring the VM up again.
-
-    SSH into the box.  Stop the live ElasticSearch and start a test instance,
-    as shown.  The '-f' option runs ElasticSearch in the foreground, so after
-    about a dozen lines of output, it's ready to go (you won't see a prompt)
-    and you can move on to the next step. (Just ^C to stop ElasticSearch when
-    you're done.)
-
-    ```bash
-    vagrant ssh
-    sudo /etc/init.d/elasticsearch stop
-    sudo /opt/elasticsearch-0.20.2/bin/elasticsearch -f -Des.http.port=9900 -Des.cluster.name=testing
-    ```
+    Since these two instances are separate from each other you shouldn't need
+    to do anything to manage the elasticsearch services.
+    If anything isn't working right just try a `vagrant provision`
+    to make sure the services are setup.
 
     SSH into the box again, and run the tests as shown.
 
@@ -39,18 +29,6 @@ Setup everything as per the main [README](README.md)...
 
     Note that, unlike the metacpan-web test suite, -r has not been passed to
     prove when running the tests.
-
-    Once the test suite has been completed, stop the ElasticSearch test
-    instance with a ^C, and re-start the normal ElasticSearch. This should get
-    your system back to the state that it was in before you started running the
-    API test suite.
-
-    ```bash
-    # Test instance of elastic searching running ..
-    ^C
-    #  Test instance stops, does cleanup and returns you to a bash prompt.
-    sudo /etc/init.d/elasticsearch start
-    ```
 
 - Setup a CPAN mirror
 
@@ -107,8 +85,20 @@ Setup everything as per the main [README](README.md)...
     Oh, you want to actually ***use*** your new CPAN mirror?  Well, that's going to take some adjustments to
     the VirtualBox.
 
-    First, make sure the VM is down via `vagrant halt`.  Fire up VirtualBox manager (not Vagrant) and
-    change the following settings:
+    You can change the amount of memory and the number of CPUs assigned to your vm
+    by setting some simple environment variables:
+
+    ```bash
+    METACPAN_DEVELOPER_MEMORY=1536 METACPAN_DEVELOPER_CPUS=2 vagrant reload
+    ```
+
+    The `vagrant reload` command is a shortcut for halting and rebooting the vm
+    and vagrant will adjust the resources for you before it brings it back up.
+    Memory should be the number of megabytes (1.5 GB => 1536 MB).
+
+    Alternatively you can use the VirtualBox Manager (not Vagrant) to change the settings:
+    Right-click on your developer vm, select "Settings", go to the "System" tab,
+    and adjust the "Memory" and "Processor" settings as necessary:
 
     * **Memory:** 1.5GB or more
     * **CPU:** Half of your total cores
@@ -116,16 +106,8 @@ Setup everything as per the main [README](README.md)...
     Both of these settings greatly increase how fast the API loading takes, and in the case of memory,
     impacts whether ES can even operate within the footprint.
 
-    ```bash
-    # Boot it back up
-    vagrant up && vagrant ssh
-
-    # Upgrade ES's memory
-    sudo su
-    vi /etc/puppet/modules/elasticsearch/manifests/init.pp  # or find it in your linked puppet repo
-    # set $memory = 1024 and save
-    /etc/puppet/run.sh
-    ```
+    After changing the vm settings run `vagrant provision` again
+    to make sure things are reconfigured appropriately.
 
     Now, you are ready to run through the API loader commands.  Depending on how much data you want to
     load, it's going to take a while to process.  Processing times and other hints are listed below,
