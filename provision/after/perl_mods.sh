@@ -11,6 +11,9 @@ mods=(
   # README_API.md describes using these to get a mirror.
   CPAN
   CPAN::Mini
+
+  Code::TidyAll
+  Perl::Tidy
 )
 
 # Get the right perl.
