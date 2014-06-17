@@ -99,10 +99,9 @@ So, your /etc/resolv.conf should look something like
 
     ```bash
     vagrant ssh
-    sudo su metacpan
-    cd ~/metacpan.org
-    source ~/.metacpanrc
-    prove -lvr t
+
+    cd /home/metacpan/metacpan.org
+    ./bin/prove t
     ```
 
     If you're not planning to work on the API itself, congratulations!

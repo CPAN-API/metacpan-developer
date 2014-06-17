@@ -21,10 +21,9 @@ Setup everything as per the main [README](README.md)...
 
     ```bash
     vagrant ssh
-    sudo su metacpan
-    cd ~/api.metacpan.org
-    source ~/.metacpanrc
-    prove -lv t
+
+    cd /home/metacpan/api.metacpan.org
+    ./prove t
     ```
 
     Note that, unlike the metacpan-web test suite, -r has not been passed to
