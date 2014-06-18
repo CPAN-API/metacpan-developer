@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Avoid confusion by giving th vagrant user the right perl.
+# Avoid confusion by giving the vagrant user the right perl.
 function user_source_metacpanrc () {
   local user="$1"
   local home="/home/$user"
