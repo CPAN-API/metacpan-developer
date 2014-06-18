@@ -40,17 +40,11 @@ Setup everything as per the main [README](README.md)...
 
     ```bash
     vagrant ssh
+
     sh /vagrant/bin/partial-cpan-mirror.sh
     ```
 
     Need the whole thing?  Read on.
-
-    Log in as metacpan and make sure your Perl path is pointing to Perlbrew:
-
-    ```bash
-    sudo su - metacpan    # from vagrant user
-    source /home/metacpan/.metacpanrc
-    ```
 
     Use CPAN to find a good mirror:
 
@@ -62,18 +56,19 @@ Setup everything as per the main [README](README.md)...
     Then load up CPAN::Mini and download the mirror:
 
     ```bash
-    minicpan -l /home/metacpan/CPAN -r $CPAN_MIRROR
-    wget -O /home/metacpan/CPAN/authors/00whois.xml $CPAN_MIRROR/authors/00whois.xml
-    wget -O /home/metacpan/CPAN/modules/06perms.txt $CPAN_MIRROR/modules/06perms.txt
+    export MINICPAN=$HOME/CPAN
+    minicpan -l $MINICPAN -r $CPAN_MIRROR
+    wget -O $MINICPAN/authors/00whois.xml $CPAN_MIRROR/authors/00whois.xml
+    wget -O $MINICPAN/modules/06perms.txt $CPAN_MIRROR/modules/06perms.txt
     # You only need the --cut-dir param if the CPAN_MIRROR has some directory like /CPAN/ on it
-    wget -P /home/metacpan/CPAN -nv -e robots=off -nH --cut-dir=1 -r -l 1 $CPAN_MIRROR/indices/
+    wget -P $MINICPAN -nv -e robots=off -nH --cut-dir=1 -r -l 1 $CPAN_MIRROR/indices/
     ```
 
     If you don't need/want a full mirror, you might want to consider something like WorePAN.  (Doc patches
     welcome for instructions on that.)  Or maybe a partial wget command, like:
 
     ```bash
-    wget -P /home/metacpan/CPAN -nv -e robots=off -nH --cut-dir=1 -r -l 3 -nc -np \
+    wget -P $MINICPAN -nv -e robots=off -nH --cut-dir=1 -r -l 3 -nc -np \
         --reject "index.html" $CPAN_MIRROR/authors/id/S/ $CPAN_MIRROR/indices/ \
         $CPAN_MIRROR/authors/00whois.xml $CPAN_MIRROR/modules/06perms.txt \
         $CPAN_MIRROR/modules/02packages.details.txt.gz
@@ -113,7 +108,8 @@ Setup everything as per the main [README](README.md)...
     though YMMV.
 
     ```bash
-    sudo su - metacpan
+    vagrant ssh
+
     cd /home/metacpan/api.metacpan.org
 
     # Easy and quick
@@ -122,7 +118,7 @@ Setup everything as per the main [README](README.md)...
     # Release processing will be the most time consuming
     # Around 10-15 distros a minute, or 40-50 hours for a full load
     # Use the --age parameter for partial loading (like --age 4320 for six months)
-    bin/metacpan release /home/metacpan/CPAN/authors/id/
+    bin/metacpan release ${MINICPAN:-$HOME/CPAN}/authors/id/
 
     # Around 60 distros a minute
     # Large/weird files (ie: Alien::Debian::Apt::PM) might timeout ES; re-run it if it chokes
