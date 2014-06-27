@@ -5,13 +5,13 @@
 
 
 carton_dirs=(
-  /home/metacpan/api.metacpan.org
-  /home/metacpan/metacpan.org
+  api.metacpan.org
+  metacpan.org
 )
 
 for dir in "${carton_dirs[@]}"; do
 
-    cd $dir;
-    /usr/local/perlbrew/perls/perl-5.16.2/bin/carton install;
+    cd /home/metacpan/$dir;
+    /usr/local/perlbrew/perls/perl-5.16.2/bin/carton install --path ~/carton/$dir;
 
 done
