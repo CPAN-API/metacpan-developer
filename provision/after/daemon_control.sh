@@ -10,6 +10,9 @@ make_init () {
   local script="/home/metacpan/$dir/bin/daemon-control.pl"
   local init="/etc/init.d/$name"
 
+  # If the old init script isn't there we don't need this anymore.
+  test -x "$init"   || return
+
   # If the script isn't there yet, exit (working on an old branch, maybe).
   test -f "$script" || return
 

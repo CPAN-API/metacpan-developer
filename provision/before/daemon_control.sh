@@ -4,6 +4,10 @@
 
 undo_dc () {
   local name="$1"
+  local init="/etc/init.d/$name"
+
+  # If the old init script isn't there we don't need this anymore.
+  test -x "$init"   || return
 
   # Stop the services before running puppet.
   # If they are running and were started with Daemon::Control they'll be
@@ -12,9 +16,8 @@ undo_dc () {
   service "$name" stop
 
   # Restore the init script puppet expects just to avoid the diff noise.
-  local init="/etc/init.d/$name"
   local pupinit="/etc/init.d/.${name}.puppet"
-  test -f "$pupinit" && cp -f "$pupinit" "$init"
+  test -f "$pupinit" && mv -f "$pupinit" "$init"
 }
 
 undo_dc metacpan-api
