@@ -56,7 +56,6 @@ So, your /etc/resolv.conf should look something like
 
     ```bash
     vagrant ssh
-    sudo su -     # to become root if you need it
     ```
 
 - To edit and test
@@ -70,20 +69,50 @@ So, your /etc/resolv.conf should look something like
 
     ```bash
     cd <to the mount as listed below>
-    /home/metacpan/bin/install_modules --installdeps .
+    ./bin/carton install
     ```
+    It's good practice to add the new modules to the cpanfile in the respective repository. And do a carton install as above.
 
     - metacpan-web is the web front end
         - mounted as /home/metacpan/metacpan.org
-        - service metacpan-www restart
+        - ./bin/carton exec daemon-control.pl restart
     - cpan-api is the backend that talks to the elasticsearch
         - mounted as /home/metacpan/api.metacpan.org
-        - service metacpan-api restart
+        - ./bin/carton exec daemon-control.pl restart
     - metacpan-puppet is the sysadmin/server setup
         - mounted as /etc/puppet
         - /etc/puppet/run.sh
 
     Make changes in your checked out 'metacpan' repos and restart the service
+
+- To debug the changes in the code.
+
+    - For metacpan-web
+	- cd /home/metacpan/metacpan.org
+	- ./bin/carton exec daemon-control.pl stop
+	- ./bin/carton exec plackup -p 5001 -r
+    - For cpan-api
+	- cd /home/metacpan/api.metacpan.org
+	- ./bin/carton exec daemon-control.pl stop
+	- ./bin/carton exec plackup -p 5000 -r
+
+- To connect the web front-end to your local cpan-api backend.
+
+    Sometimes you may have to make some changes to the backend and reflect the same on the front end. 
+    For Example: Setting up a new API endpoint. 
+    metacpan-web by default uses the hosted api i.e https://api.metacpan.org as its backend.
+    To configure your local cpan-api, do the following.
+
+    - In the metacpan-web repository,
+	- Copy and Paste the `metacpan_web.conf` file and rename it as `metacpan_web_local.conf` that will contain:
+
+    api                 http://127.0.0.1:5000
+    api_external        http://127.0.0.1:5000
+    api_secure          http://127.0.0.1:5000
+    api_external_secure http://127.0.0.1:5000
+
+    - This local configuration file will be loaded on top of the existing config file.
+    - Do a vagrant reload after this or simply follow the debug steps that will reload this file.
 
 - To connect to services on the VM
 
@@ -103,9 +132,6 @@ So, your /etc/resolv.conf should look something like
     cd /home/metacpan/metacpan.org
     ./bin/prove t
     ```
-
-    If you're not planning to work on the API itself, congratulations!
-    You're ready to start hacking.
 
 ### More documentation
 

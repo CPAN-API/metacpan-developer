@@ -2,33 +2,6 @@
 
 Setup everything as per the main [README](README.md)...
 
-- Running the API test suite
-
-    The vm has an instance of elasticsearch running on the default port of 9200.
-    This is the instance that the API will use for development
-    to store any minicpan data you index.
-
-    Additionally the vm already has a second instance of elasticsearch running on port 9900
-    (using a small amount of memory and an alternate cluster name)
-    which the test suite will use.
-
-    Since these two instances are separate from each other you shouldn't need
-    to do anything to manage the elasticsearch services.
-    If anything isn't working right just try a `vagrant provision`
-    to make sure the services are setup.
-
-    SSH into the box again, and run the tests as shown.
-
-    ```bash
-    vagrant ssh
-
-    cd /home/metacpan/api.metacpan.org
-    ./prove t
-    ```
-
-    Note that, unlike the metacpan-web test suite, -r has not been passed to
-    prove when running the tests.
-
 - Setup a CPAN mirror
 
     If you are working on the API, you will need a CPAN mirror to load into ElasticSearch.  A full CPAN
@@ -115,18 +88,41 @@ Setup everything as per the main [README](README.md)...
     export MINICPAN=$HOME/CPAN
 
     # Easy and quick
-    bin/metacpan mapping --delete
+    ./bin/metacpan mapping --delete
 
     # Release processing will be the most time consuming
     # Around 10-15 distros a minute, or 40-50 hours for a full load
     # Use the --age parameter for partial loading (like --age 4320 for six months)
-    bin/metacpan release $MINICPAN/authors/id/
+    ./bin/metacpan release $MINICPAN/authors/id/
 
     # Around 60 distros a minute
     # Large/weird files (ie: Alien::Debian::Apt::PM) might timeout ES; re-run it if it chokes
-    bin/metacpan latest --cpan $MINICPAN
+    ./bin/metacpan latest --cpan $MINICPAN
 
     # Easy and quick
-    bin/metacpan author --cpan $MINICPAN
+    ./bin/metacpan author --cpan $MINICPAN
     ```
 
+- Running the API test suite
+
+    The vm has an instance of elasticsearch running on the default port of 9200.
+    This is the instance that the API will use for development
+    to store any minicpan data you index.
+
+    Additionally the vm already has a second instance of elasticsearch running on port 9900
+    (using a small amount of memory and an alternate cluster name)
+    which the test suite will use.
+
+    Since these two instances are separate from each other you shouldn't need
+    to do anything to manage the elasticsearch services.
+    If anything isn't working right just try a `vagrant provision`
+    to make sure the services are setup.
+
+    SSH into the box again, and run the tests as shown.
+
+    ```bash
+    vagrant ssh
+
+    cd /home/metacpan/api.metacpan.org
+    .bin/prove t
+    ```
