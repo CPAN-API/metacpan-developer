@@ -75,10 +75,10 @@ So, your /etc/resolv.conf should look something like
 
     - metacpan-web is the web front end
         - mounted as /home/metacpan/metacpan.org
-        - ./bin/carton exec daemon-control.pl restart
+        - ./bin/carton exec bin/daemon-control.pl restart
     - cpan-api is the backend that talks to the elasticsearch
         - mounted as /home/metacpan/api.metacpan.org
-        - ./bin/carton exec daemon-control.pl restart
+        - ./bin/carton exec bin/daemon-control.pl restart
     - metacpan-puppet is the sysadmin/server setup
         - mounted as /etc/puppet
         - /etc/puppet/run.sh
@@ -88,17 +88,17 @@ So, your /etc/resolv.conf should look something like
 - To debug the changes in the code.
 
     - For metacpan-web
-	- cd /home/metacpan/metacpan.org
-	- ./bin/carton exec daemon-control.pl stop
-	- ./bin/carton exec plackup -p 5001 -r
+        - cd /home/metacpan/metacpan.org
+        - ./bin/carton exec bin/daemon-control.pl stop
+        - ./bin/carton exec plackup -p 5001 -r
     - For cpan-api
-	- cd /home/metacpan/api.metacpan.org
-	- ./bin/carton exec daemon-control.pl stop
-	- ./bin/carton exec plackup -p 5000 -r
+        - cd /home/metacpan/api.metacpan.org
+        - ./bin/carton exec bin/daemon-control.pl stop
+        - ./bin/carton exec plackup -p 5000 -r
 
 - To connect the web front-end to your local cpan-api backend.
 
-    Sometimes you may have to make some changes to the backend and reflect the same on the front end. 
+    At times you may have to make a few changes to the backend and reflect the same on the front end. 
     For Example: Setting up a new API endpoint. 
     metacpan-web by default uses the hosted api i.e https://api.metacpan.org as its backend.
     To configure your local cpan-api, do the following.
@@ -139,6 +139,7 @@ So, your /etc/resolv.conf should look something like
  * [HELP](HELP.md) page (including VM tuning notes)
 
 ### Problems?
+ * Check the [FAQs](FAQs.md) page for common issues faced during the development process.
  * If you have trouble mounting the folders, check this fix for [guest additions](http://stackoverflow.com/questions/22717428/vagrant-error-failed-to-mount-folders-in-linux-guest)
  * Ask on #metacpan (irc.perl.org), or open an [issue](https://github.com/CPAN-API/metacpan-developer/issues)
 
