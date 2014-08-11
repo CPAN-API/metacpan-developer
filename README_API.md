@@ -124,5 +124,5 @@ Setup everything as per the main [README](README.md)...
     vagrant ssh
 
     cd /home/metacpan/api.metacpan.org
-    .bin/prove t
+    ./bin/prove t
     ```

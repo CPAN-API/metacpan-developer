@@ -44,5 +44,5 @@
 ## Where are the log files?
 
 - /opt/elasticsearch/logs
-- /var/www/<site>/logs
+- /var/www/(site)/logs
 - /home/metacpan/api.metacpan.org/var/log/

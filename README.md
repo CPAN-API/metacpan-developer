@@ -12,14 +12,15 @@
 -  Check out this repo.
 
     ```bash
-    git clone git://github.com/CPAN-API/metacpan-developer.git
+     git clone git://github.com/CPAN-API/metacpan-developer.git
     ```
 
 -  Set Up repositories
-   ````bash
-    cd metacpan-developer
-    sh bin/init.sh
-   ```
+
+    ```bash
+     cd metacpan-developer
+     sh bin/init.sh
+    ```
 
 - Start the virtual machine (first run will download our .box disk image
   ~900MB)
@@ -33,29 +34,29 @@ might need to run this each time you start up the machine or if we have made
 further changes)
 
     ```bash
-    vagrant provision
+     vagrant provision
     ```
 
 If you get this error when provisioning "err: Could not request certificate: Connection refused - connect(2)"
 then add the following to your /etc/resolv.conf as the first nameserver:
 
     ```bash
-    nameserver 8.8.8.8
+     nameserver 8.8.8.8
     ```
 
 So, your /etc/resolv.conf should look something like
 
     ```bash
-    domain home
-    search home
-    nameserver 8.8.8.8
-    nameserver 10.0.2.3
+     domain home
+     search home
+     nameserver 8.8.8.8
+     nameserver 10.0.2.3
     ```
 
 - Connect to the vm
 
     ```bash
-    vagrant ssh
+     vagrant ssh
     ```
 
 - To edit and test
@@ -68,8 +69,8 @@ So, your /etc/resolv.conf should look something like
     To install any missing (newly required) perl modules, as root run
 
     ```bash
-    cd <to the mount as listed below>
-    ./bin/carton install
+     cd <to the mount as listed below>
+     ./bin/carton install
     ```
     It's good practice to add the new modules to the cpanfile in the respective repository. And do a carton install as above.
 
@@ -105,12 +106,14 @@ So, your /etc/resolv.conf should look something like
 
     - In the metacpan-web repository,
 	- Copy and Paste the `metacpan_web.conf` file and rename it as `metacpan_web_local.conf` that will contain:
-
-    api                 http://127.0.0.1:5000
-    api_external        http://127.0.0.1:5000
-    api_secure          http://127.0.0.1:5000
-    api_external_secure http://127.0.0.1:5000
-
+	
+	```
+	api                 http://127.0.0.1:5000
+	api_external        http://127.0.0.1:5000
+	api_secure          http://127.0.0.1:5000
+	api_external_secure http://127.0.0.1:5000
+	```
+	
     - This local configuration file will be loaded on top of the existing config file.
     - Do a vagrant reload after this or simply follow the debug steps that will reload this file.
 
@@ -127,10 +130,9 @@ So, your /etc/resolv.conf should look something like
     You'll want to run the suite at least once before getting started to make sure the VM has a clean bill of health.
 
     ```bash
-    vagrant ssh
-
-    cd /home/metacpan/metacpan.org
-    ./bin/prove t
+     vagrant ssh
+     cd /home/metacpan/metacpan.org
+     ./bin/prove t
     ```
 
 ### More documentation
