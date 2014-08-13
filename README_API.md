@@ -88,19 +88,19 @@ Setup everything as per the main [README](README.md)...
     export MINICPAN=$HOME/CPAN
 
     # Easy and quick
-    ./bin/carton ./bin/metacpan mapping --delete
+    ./bin/carton exec ./bin/metacpan mapping --delete
 
     # Release processing will be the most time consuming
     # Around 10-15 distros a minute, or 40-50 hours for a full load
     # Use the --age parameter for partial loading (like --age 4320 for six months)
-    ./bin/carton ./bin/metacpan release $MINICPAN/authors/id/
+    ./bin/carton exec ./bin/metacpan release $MINICPAN/authors/id/
 
     # Around 60 distros a minute
     # Large/weird files (ie: Alien::Debian::Apt::PM) might timeout ES; re-run it if it chokes
-    ./bin/carton ./bin/metacpan latest --cpan $MINICPAN
+    ./bin/carton exec ./bin/metacpan latest --cpan $MINICPAN
 
     # Easy and quick
-    ./bin/carton ./bin/metacpan author --cpan $MINICPAN
+    ./bin/carton exec ./bin/metacpan author --cpan $MINICPAN
     ```
 
 - Running the API test suite
