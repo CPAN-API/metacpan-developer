@@ -1,6 +1,6 @@
 # metacpan-developer help / faq
 
-## A note about tuning VirtualBox
+## A note about tuning the VirtualBox
 
     There is anecdotal evidence that some VirtualBox VMs consume a great deal
     of CPU time, even when idle. A metacpan VM normally consumes about 5% of
@@ -25,12 +25,12 @@
 - Make sure you have recent versions [Vagrant](http://www.vagrantup.com/downloads.html) (1.2.2+) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (4.2.12+)
 
 - Open VirtualBox
-	- Shutdown the box,
+	- Shutdown the box.
 	- Go to 'display' options for the VM, then 'remote display' and 'enable server'
 	- Then start the VM through VirtualBox and you will see a large console
 
-- Sometimes the VM can enter a "Guru Meditation" state during a 'vagrant up' command. In such a situation,
-	- Force stop the VM from the terminal: VBoxManage controlvm <VM Name> poweroff
+- Sometimes the VM can enter a 'Guru Meditation' state during a 'vagrant up' command. In such a situation,
+	- Force stop the VM from the terminal: VBoxManage controlvm (VM Name) poweroff
 	- Go to the 'Settings' options for the VM from the Virtual Box.
 	- Go to the 'System' tab, and then the 'Processors' tab. Enable the 'PAE mode' by checking the option.
 	- Now do a 'vagrant up'.
@@ -44,5 +44,5 @@
 ## Where are the log files?
 
 - /opt/elasticsearch/logs
-- /var/www/<site>/logs
+- /var/www/(site)/logs
 - /home/metacpan/api.metacpan.org/var/log/
