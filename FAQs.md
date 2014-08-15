@@ -80,7 +80,6 @@ Ran into some error you don't understand? Read on to see if it's a commonly face
 
 12. I added some code to MetaCPAN and pushed a few commits, but I have not made any tests to test this code.
    - It is good practice to adhere to the perl-critic rules while coding. We have included a perl-critic.t test which tests if your code goes by the basic rules of coding. This helps us set a particular standard to our metacpan code.
-   - Simply add the path of your new files to t/perl-critic.t so that they can be tested.
 
 ----
 Point to be noted:
