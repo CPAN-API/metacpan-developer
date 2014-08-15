@@ -12,11 +12,11 @@
     In the VirtualBox Manager, set the System configuration as follows:
 
     - Motherboard / Extended Features:
-        - [ ] Enable IO APIC
+        - [ ] Enable I/O APIC
     - Processor / 1 CPU, no execution cap
     - Acceleration / Hardware Virtualization:
         - [x] Enable VT-x/AMD-V
-    - [ ] Enable Nested Paging
+        - [ ] Enable Nested Paging
 
     See http://tech.shantanugoel.com/2009/07/07/virtualbox-high-cpu-usage-problem-solved.html for some discussion on this topic.
 
