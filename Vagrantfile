@@ -22,7 +22,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.network "forwarded_port", guest: 5000, host: 5000 # api
   config.vm.network "forwarded_port", guest: 5001, host: 5001 # www
-  config.vm.network "forwarded_port", guest: 80, host: 5080 # nginx
+  config.vm.network "forwarded_port", guest: 80, host: 5080 # nginx http
+  config.vm.network "forwarded_port", guest: 443, host: 5443 # nginx https
   config.vm.network "forwarded_port", guest: 9200, host: 9200 # production ES
   config.vm.network "forwarded_port", guest: 9900, host: 9900 # test ES
 
