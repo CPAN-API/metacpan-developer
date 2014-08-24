@@ -18,7 +18,6 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision :shell, :path => 'provision/all.sh'
-  config.vm.provision :shell, :path => 'provision/carton.sh', :privileged => false
 
   config.vm.network "forwarded_port", guest: 5000, host: 5000 # api
   config.vm.network "forwarded_port", guest: 5001, host: 5001 # www
