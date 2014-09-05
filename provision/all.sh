@@ -13,8 +13,10 @@ function exec_dir () {
 # Execute any before-puppet vm initialization scripts.
 exec_dir before
 
+# To convert an old box you would need the latest puppet
 # Run puppet to cleanup and check everything is running
-## FIXME: if puppet --verison != 3.6.2
+# if puppet --verison != 3.6.2
+# --------------
 # apt-get remove -f -y puppet puppet-common puppetmaster
 # apt-get install -y git
 # cd /tmp/
