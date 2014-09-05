@@ -27,7 +27,7 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 9900, host: 9900 # test ES
 
   config.vm.synced_folder('src/metacpan-puppet', '/etc/puppet')
-  config.vm.synced_folder('src/cpan-api', '/home/metacpan/metacpan-api')
+  config.vm.synced_folder('src/metacpan-api', '/home/metacpan/metacpan-api')
   config.vm.synced_folder('src/metacpan-web', '/home/metacpan/metacpan-web')
   config.vm.synced_folder('src/metacpan-explorer', '/home/metacpan/metacpan-explorer')
 end
