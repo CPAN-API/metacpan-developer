@@ -3,20 +3,24 @@
 service=elasticsearch-test-cluster
 script=/etc/init.d/$service
 
-cat <<'INIT' > $script
+cat <<'INIT' | perl -pe "s/{{service}}/$service/g" > $script
 #!/bin/bash
 
 ### BEGIN INIT INFO
-# Provides:          elasticsearch-test-cluster
+# Provides:          {{service}}
 # Required-Start:    $ALL
 # Required-Stop:
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 ### END INIT INFO
 
-ES_HOME=/opt/elasticsearch-0.20.2
-USER=elasticsearch
-PIDFILE=/var/run/elasticsearch-test-cluster.pid
+es_real=es-01
+. /etc/default/elasticsearch${es_real:+-}$es_real
+DATA_DIR=/tmp/{{service}}/data
+WORK_DIR=/tmp/{{service}}/work
+
+USER=${ES_USER:-elasticsearch}
+PIDFILE=/var/run/{{service}}.pid
 
 # The test suite doesn't need much memory.
 export ES_HEAP_SIZE=32m
@@ -38,7 +42,17 @@ start () {
     --background --make-pidfile \
     --startas $ES_HOME/bin/elasticsearch \
     --start \
-      -- -f -Des.http.port=9900 -Des.cluster.name=testing
+      -- \
+        -Des.http.port=9900 \
+        -Des.cluster.name=testing \
+        -Des.node.name=testing \
+        -Des.default.config=$CONF_FILE \
+        -Des.default.path.home=$ES_HOME \
+        -Des.default.path.logs=$LOG_DIR \
+        -Des.default.path.data=$DATA_DIR \
+        -Des.default.path.work=$WORK_DIR \
+        -Des.default.path.conf=$CONF_DIR \
+        -f
 }
 
 stop () {
