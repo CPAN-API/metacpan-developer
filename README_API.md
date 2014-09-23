@@ -83,12 +83,12 @@ Setup everything as per the main [README](README.md)...
     ```bash
     vagrant ssh
 
-    cd /home/metacpan/api.metacpan.org
+    cd /home/vagrant/metacpan-api
 
     export MINICPAN=$HOME/CPAN
 
     # Easy and quick
-    ./bin/carton exec ./bin/metacpan mapping --delete
+    carton exec ./bin/metacpan mapping --delete
 
     # Release processing will be the most time consuming
     # Around 10-15 distros a minute, or 40-50 hours for a full load
@@ -123,6 +123,6 @@ Setup everything as per the main [README](README.md)...
     ```bash
     vagrant ssh
 
-    cd /home/metacpan/api.metacpan.org
+    cd /home/vagrant/metacpan-api
     ./bin/prove t
     ```

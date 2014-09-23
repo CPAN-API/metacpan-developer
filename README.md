@@ -89,10 +89,10 @@ So, your /etc/resolv.conf should look something like
 - To debug the changes in the code.
 
     - For metacpan-web
-        - cd /home/metacpan/metacpan.org
+        - cd /home/vagrant/metacpan-web
         - sudo service starman_metacpan-web restart
     - For cpan-api
-        - cd /home/metacpan/api.metacpan.org
+        - cd /home/vagrant/metacpan-api
         - sudo service starman_metacpan-api restart
 
 - To connect the web front-end to your local cpan-api backend.
