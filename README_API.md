@@ -83,7 +83,7 @@ Setup everything as per the main [README](README.md)...
     ```bash
     vagrant ssh
 
-    cd /home/metacpan/api.metacpan.org
+    cd /home/vagrant/metacpan-api
 
     export MINICPAN=$HOME/CPAN
 
@@ -123,6 +123,6 @@ Setup everything as per the main [README](README.md)...
     ```bash
     vagrant ssh
 
-    cd /home/metacpan/api.metacpan.org
+    cd /home/vagrant/metacpan-api
     ./bin/prove t
     ```
