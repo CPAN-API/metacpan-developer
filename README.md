@@ -70,7 +70,7 @@ So, your /etc/resolv.conf should look something like
 
     ```bash
      cd <to the mount as listed below>
-     carton install
+     ./bin/carton install
     ```
     It's good practice to add the new modules to the cpanfile in the respective repository. And do a carton install as above.
 

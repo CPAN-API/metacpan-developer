@@ -93,14 +93,14 @@ Setup everything as per the main [README](README.md)...
     # Release processing will be the most time consuming
     # Around 10-15 distros a minute, or 40-50 hours for a full load
     # Use the --age parameter for partial loading (like --age 4320 for six months)
-    carton exec ./bin/metacpan release $MINICPAN/authors/id/
+    ./bin/carton exec ./bin/metacpan release $MINICPAN/authors/id/
 
     # Around 60 distros a minute
     # Large/weird files (ie: Alien::Debian::Apt::PM) might timeout ES; re-run it if it chokes
-    carton exec ./bin/metacpan latest --cpan $MINICPAN
+    ./bin/carton exec ./bin/metacpan latest --cpan $MINICPAN
 
     # Easy and quick
-    carton exec ./bin/metacpan author --cpan $MINICPAN
+    ./bin/carton exec ./bin/metacpan author --cpan $MINICPAN
     ```
 
 - Running the API test suite
