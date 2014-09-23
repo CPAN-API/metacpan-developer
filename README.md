@@ -75,11 +75,11 @@ So, your /etc/resolv.conf should look something like
     It's good practice to add the new modules to the cpanfile in the respective repository. And do a carton install as above.
 
     - metacpan-web is the web front end
-        - mounted as /home/metacpan/metacpan.org
-        - ./bin/carton exec bin/daemon-control.pl restart
+        - mounted as /home/vagrant/metacpan-web
+        - sudo service starman_metacpan-web restart
     - cpan-api is the backend that talks to the elasticsearch
-        - mounted as /home/metacpan/api.metacpan.org
-        - ./bin/carton exec bin/daemon-control.pl restart
+        - mounted as /home/vagrant/metacpan-api
+        - sudo service starman_metacpan-api restart
     - metacpan-puppet is the sysadmin/server setup
         - mounted as /etc/puppet
         - /etc/puppet/run.sh
@@ -90,12 +90,10 @@ So, your /etc/resolv.conf should look something like
 
     - For metacpan-web
         - cd /home/metacpan/metacpan.org
-        - ./bin/carton exec bin/daemon-control.pl stop
-        - ./bin/carton exec plackup -p 5001 -r
+        - sudo service starman_metacpan-web restart
     - For cpan-api
         - cd /home/metacpan/api.metacpan.org
-        - ./bin/carton exec bin/daemon-control.pl stop
-        - ./bin/carton exec plackup -p 5000 -r
+        - sudo service starman_metacpan-api restart
 
 - To connect the web front-end to your local cpan-api backend.
 
@@ -131,7 +129,7 @@ So, your /etc/resolv.conf should look something like
 
     ```bash
      vagrant ssh
-     cd /home/metacpan/metacpan.org
+     cd /home/vagrant/metacpan-web
      ./bin/prove t
     ```
 
