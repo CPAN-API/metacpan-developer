@@ -76,11 +76,11 @@ So, your /etc/resolv.conf should look something like
 
     - metacpan-web is the web front end
         - ./bin/metacpan-web-carton
-	- mounted as /home/vagrant/metacpan-web
+        - mounted as /home/vagrant/metacpan-web
         - sudo service starman_metacpan-web restart
     - cpan-api is the backend that talks to the elasticsearch
         - ./bin/metacpan-api-carton
-	- mounted as /home/vagrant/metacpan-api
+        - mounted as /home/vagrant/metacpan-api
         - sudo service starman_metacpan-api restart
     - metacpan-puppet is the sysadmin/server setup
         - mounted as /etc/puppet
