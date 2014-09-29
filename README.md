@@ -69,15 +69,17 @@ So, your /etc/resolv.conf should look something like
     To install any missing (newly required) perl modules, as root run
 
     ```bash
-     cd <to the mount as listed below>
-     ./bin/carton install
+     cd /home/vagrant
+     ./bin/<path shown below>
     ```
     It's good practice to add the new modules to the cpanfile in the respective repository. And do a carton install as above.
 
     - metacpan-web is the web front end
+        - ./bin/metacpan-web-carton
         - mounted as /home/vagrant/metacpan-web
         - sudo service starman_metacpan-web restart
     - cpan-api is the backend that talks to the elasticsearch
+        - ./bin/metacpan-api-carton
         - mounted as /home/vagrant/metacpan-api
         - sudo service starman_metacpan-api restart
     - metacpan-puppet is the sysadmin/server setup
@@ -142,5 +144,3 @@ So, your /etc/resolv.conf should look something like
  * Check the [FAQs](FAQs.md) page for common issues faced during the development process.
  * If you have trouble mounting the folders, check this fix for [guest additions](http://stackoverflow.com/questions/22717428/vagrant-error-failed-to-mount-folders-in-linux-guest)
  * Ask on #metacpan (irc.perl.org), or open an [issue](https://github.com/CPAN-API/metacpan-developer/issues)
-
-
