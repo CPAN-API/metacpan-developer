@@ -1,16 +1,15 @@
 #!/bin/sh
 
-sudo service elasticsearch start
+sudo service elasticsearch-es-01 start
 
-cd /home/metacpan/api.metacpan.org
+cd ~/metacpan-api
 
-/home/metacpan/bin/metacpan-api-carton-exec bin/metacpan mapping
+./bin/run bin/metacpan mapping
 
 sh /vagrant/bin/partial-cpan-mirror.sh
 
-
 export MINICPAN=$HOME/CPAN
 
-sudo /home/metacpan/bin/metacpan-api-carton-exec bin/metacpan release ~/CPAN/authors/id
-sudo /home/metacpan/bin/metacpan-api-carton-exec bin/metacpan latest
-sudo /home/metacpan/bin/metacpan-api-carton-exec bin/metacpan author
+./bin/run bin/metacpan release ~/CPAN/authors/id/
+./bin/run bin/metacpan latest
+./bin/run bin/metacpan author
