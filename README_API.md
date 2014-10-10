@@ -11,10 +11,17 @@ Setup everything as per the main [README](README.md)...
     If you just want a few files to index (you don't need a full CPAN) run this
     script as the vagrant user.  You'll be ready in a few minutes.
 
+    Make sure that the /home/vagrant/metacpan-api/metacpan_server_local.conf exists and that it contains
+    the following line:
+
+    cpan = /home/vagrant/CPAN
+
+    Then, run the following script:
+
     ```bash
     vagrant ssh
 
-    sh /vagrant/bin/partial-cpan-mirror.sh
+    sh /vagrant/bin/index-cpan.sh
     ```
 
     Need the whole thing?  Read on.
