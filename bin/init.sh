@@ -15,4 +15,8 @@ cd ..
 cd metacpan-api
 sh git/setup.sh
 
+if ! [ -e metacpan_server_local.conf ]; then
+     echo "cpan /home/vagrant/CPAN" > metacpan_server_local.conf
+fi
+
 vagrant plugin install vagrant-vbguest
