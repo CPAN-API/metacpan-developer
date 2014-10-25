@@ -11,7 +11,7 @@ Setup everything as per the main [README](README.md)...
     If you just want a few files to index (you don't need a full CPAN) run this
     script as the vagrant user.  You'll be ready in a few minutes.
 
-    Make sure that the /home/vagrant/metacpan-api/metacpan_server_local.conf exists and that it contains
+    Make sure that the `/home/vagrant/metacpan-api/metacpan_server_local.conf` exists and that it contains
     the following line:
 
     cpan = /home/vagrant/CPAN
@@ -133,3 +133,72 @@ Setup everything as per the main [README](README.md)...
     cd /home/vagrant/metacpan-api
     ./bin/prove t
     ```
+
+## Working with Login
+
+The sign-in process for metacpan-web sends the user to the api to utilize
+one of several OAuth providers.  The user gets redirected to the
+authentication site, then redirected back to the api which should eventually
+send the user back to the website.
+
+### Development
+
+To test login between the web and api sites on the developer vm
+ensure `/home/vagrant/metacpan-web/metacpan_web_local.conf` is configured
+to use the local api:
+
+    api                 http://localhost:5000
+    api_secure          http://localhost:5000
+    api_external        http://localhost:5000
+    api_external_secure http://localhost:5000
+
+and make sure the web site is running in development mode (the default)
+so that cookies are not marked as secure.
+
+Providers known to work in development (with the default (metacpan.dev) client id):
+
+* Github
+* Twitter
+
+### Production
+
+To test logging in to a different api (for example, to test a new production
+server), the process is similar, but trickier.  Since the live api will be
+configured for secure cookies and expect you to be logging in to `metacpan.org`
+you'll have to do a bit more work:
+
+* Edit `/home/vagrant/metacpan-web/metacpan_web_local.conf`
+
+    Configure as above (the api vars) but be sure to specify `https`
+    and use whatever domain you are testing against.
+    Additionally you will need to copy `consumer_key`, `consumer_secret`,
+    and `cookie_secret` from the private production config.
+
+* Setup a web server on port 443
+
+    The simplest way is probably to just listen on localhost:443
+    (on your host pc) with a self-signed cert
+    and do a reverse proxy to the vm on 5001.
+    Make sure the `Forwarded` headers are set (including `proto`)!
+
+* Edit your hosts file to point `metacpan.org` at your local pc
+
+* Run metacpan-web in production mode
+
+        cd /home/vagrant/metacpan-web
+        bin/run plackup -p 5001 -E production
+
+    You may need to stop the service first:
+
+        sudo service starman_metacpan-web stop
+
+Now you can access `https://metacpan.org` which points to your vm
+but uses a live (alternative) api.
+
+When you're done remember to fix your hosts file, your local web server,
+and `metacpan_web_local.conf`
+
+**NOTE** Github will not work for this as the redirect url can not be
+passed (Github will always use the one configured with the app).
+
+Twitter should work.
