@@ -133,6 +133,14 @@ So, your /etc/resolv.conf should look something like
      ./bin/prove t
     ```
 
+This recursively runs all the tests in the `t` directory in metacpan-web.  To do a partial run during development, specify the path to the file or directory containing the tests you want to run, for example:
+
+    ```bash
+    ./bin/prove t/model/release.t
+    ```
+
+This will save time during development, but of course you should always run the full test suite before submitting a pull request.
+
 ### More documentation
 
  * [SETTING UP / TESTING THE API](README_API.md) page
