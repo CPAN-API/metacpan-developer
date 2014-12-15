@@ -23,22 +23,6 @@ For information on using MetaCPAN, see [the api docs](https://github.com/CPAN-AP
     vagrant provision # necessary installation and configuration
     ```
 
-If you get this error when provisioning "err: Could not request certificate: Connection refused - connect(2)"
-then add the following to your /etc/resolv.conf as the first nameserver:
-
-    ```bash
-    nameserver 8.8.8.8
-    ```
-
-So, your /etc/resolv.conf should look something like
-
-    ```bash
-    domain home
-    search home
-    nameserver 8.8.8.8
-    nameserver 10.0.2.3
-    ```
-
 - Connect to the vm
 
     ```bash

@@ -109,10 +109,20 @@ Ran into some error you don't understand? Read on to see if it's a commonly face
    - Make sure you have the right perl... run source /home/vagrant/.metacpanrc
 
 16. Where are the log files?
-
    - /opt/elasticsearch/logs
    - /var/www/[site]/logs
    - /home/metacpan/[site]/var/log/
+
+17. I get "err: Could not request certificate: Connection refused - connect(2)" when provisioning. 
+   - Add 8.8.8.8 to your /etc/resolv.conf as the first nameserver
+   - So, your /etc/resolv.conf should look something like:
+
+    ```bash
+    domain home
+    search home
+    nameserver 8.8.8.8
+    nameserver 10.0.2.3
+    ```
 
 
 ----
