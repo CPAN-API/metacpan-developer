@@ -23,10 +23,16 @@ For information on using MetaCPAN, see [the api docs](https://github.com/CPAN-AP
     vagrant provision # necessary installation and configuration
     ```
 
-- Connect to the vm
+At this point you have a virtual machine with all of the MetaCPAN services up and running!  You can connect to it with:
 
     ```bash
     vagrant ssh
+    ```
+
+And shut it down with:
+
+    ```bash
+    vagrant halt
     ```
 
 - To edit and test
