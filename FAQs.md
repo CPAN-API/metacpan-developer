@@ -81,6 +81,40 @@ Ran into some error you don't understand? Read on to see if it's a commonly face
 12. I added some code to MetaCPAN and pushed a few commits, but I have not made any tests to test this code.
    - It is good practice to adhere to the perl-critic rules while coding. We have included a perl-critic.t test which tests if your code goes by the basic rules of coding. This helps us set a particular standard to our metacpan code.
 
+13. The VM is consuming a large percentage of my processor.
+   - This is a rare problem, but the following has helped some people:
+   - Shutdown the machine (vagrant halt)
+   - In the VirtualBox Manager, set the System configuration as follows:
+      - Motherboard / Extended Features:
+         - [ ] Enable I/O APIC
+      - Processor / 1 CPU, no execution cap
+      - Acceleration / Hardware Virtualization:
+         - [x] Enable VT-x/AMD-V
+         - [ ] Enable Nested Paging
+   - See http://tech.shantanugoel.com/2009/07/07/virtualbox-high-cpu-usage-problem-solved.html for some discussion on this topic.
+
+14. I'm having trouble starting the VM.
+   - Make sure you have recent versions of [Vagrant](http://www.vagrantup.com/downloads.html) (1.2.2+) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (4.2.12+)
+   - Open VirtualBox
+      - Shut down the box.
+      - Go to 'display' options for the VM, then 'remote display' and 'enable server'
+      - Then start the VM through VirtualBox and you will see a large console
+   - Sometimes the VM can enter a 'Guru Meditation' state during a 'vagrant up' command. In such a situation,
+      - Force stop the VM from the terminal: VBoxManage controlvm (VM Name) poweroff
+      - Go to the 'Settings' options for the VM from the Virtual Box.
+      - Go to the 'System' tab, and then the 'Processors' tab. Enable the 'PAE mode' by checking the option.
+      - Now do a 'vagrant up'.
+
+15. I'm having trouble running a script
+   - Make sure you have the right perl... run source /home/vagrant/.metacpanrc
+
+16. Where are the log files?
+
+   - /opt/elasticsearch/logs
+   - /var/www/[site]/logs
+   - /home/metacpan/[site]/var/log/
+
+
 ----
 Point to be noted:
    - Always do a 'git pull' on all the repositories before starting off with development.
