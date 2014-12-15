@@ -13,32 +13,14 @@ For information on using MetaCPAN, see [the api docs](https://github.com/CPAN-AP
       this](http://docs-v1.vagrantup.com/v1/docs/getting-started/ssh.html).
     - To be able to download about 900MB of data on the first run
 
--  Check out this repo.
+## Initial Setup
 
     ```bash
     git clone git://github.com/CPAN-API/metacpan-developer.git
-    ```
-
--  Set Up repositories
-
-    ```bash
     cd metacpan-developer
-    sh bin/init.sh
-    ```
-
-- Start the virtual machine (first run will download our .box disk image
-  ~900MB)
-
-    ```bash
-    vagrant up
-    ```
-
-- Run all the extra bits that were added after we created the .box file (you
-might need to run this each time you start up the machine or if we have made
-further changes)
-
-    ```bash
-    vagrant provision
+    sh bin/init.sh # clone all of the metacpan repos
+    vagrant up # start the VM - will download the base box (900M) on the first run
+    vagrant provision # necessary installation and configuration
     ```
 
 If you get this error when provisioning "err: Could not request certificate: Connection refused - connect(2)"
