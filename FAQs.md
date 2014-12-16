@@ -81,6 +81,7 @@ Ran into some error you don't understand? Read on to see if it's a commonly face
 12. I added some code to MetaCPAN and pushed a few commits, but I have not made any tests to test this code.
    - It is good practice to adhere to the perl-critic rules while coding. We have included a perl-critic.t test which tests if your code goes by the basic rules of coding. This helps us set a particular standard to our metacpan code.
 
+
 13. The VM is consuming a large percentage of my processor.
    - This is a rare problem, but the following has helped some people:
    - Shutdown the machine (vagrant halt)
@@ -92,6 +93,7 @@ Ran into some error you don't understand? Read on to see if it's a commonly face
          - [x] Enable VT-x/AMD-V
          - [ ] Enable Nested Paging
    - See http://tech.shantanugoel.com/2009/07/07/virtualbox-high-cpu-usage-problem-solved.html for some discussion on this topic.
+
 
 14. I'm having trouble starting the VM.
    - Make sure you have recent versions of [Vagrant](http://www.vagrantup.com/downloads.html) (1.2.2+) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (4.2.12+)
@@ -105,27 +107,49 @@ Ran into some error you don't understand? Read on to see if it's a commonly face
       - Go to the 'System' tab, and then the 'Processors' tab. Enable the 'PAE mode' by checking the option.
       - Now do a 'vagrant up'.
 
+
 15. I'm having trouble running a script
    - Make sure you have the right perl... run source /home/vagrant/.metacpanrc
+
 
 16. Where are the log files?
    - /opt/elasticsearch/logs
    - /var/www/[site]/logs
    - /home/metacpan/[site]/var/log/
 
+
 17. I get "err: Could not request certificate: Connection refused - connect(2)" when provisioning. 
    - Add 8.8.8.8 to your /etc/resolv.conf as the first nameserver
    - So, your /etc/resolv.conf should look something like:
 
-    ```bash
+```bash
     domain home
     search home
     nameserver 8.8.8.8
     nameserver 10.0.2.3
-    ```
+```
 
 
-----
-Point to be noted:
-   - Always do a 'git pull' on all the repositories before starting off with development.
-   - A lot of changes keep happening in the repos and so, it's always safe to have all the recent changes in your local machine.
+18. I'm having trouble mounting the folders in the VM
+   - Check this fix for [guest additions](http://stackoverflow.com/questions/22717428/vagrant-error-failed-to-mount-folders-in-linux-guest)
+
+
+19. How do I connect the web front-end to my local cpan-api backend?
+   - Create a local copy of the web config file: 
+
+```bash
+    cd /path/to/metacpan-web
+    cp metacpan_web.conf metacpan_web_local.conf
+```
+   
+   - This will override the old config file.  Edit it to point to the local backend:
+
+```
+    api                 http://127.0.0.1:5000
+    api_external        http://127.0.0.1:5000
+    api_secure          http://127.0.0.1:5000
+    api_external_secure http://127.0.0.1:5000
+```
+
+    - and run vagrant reload or restart the web service.
+
