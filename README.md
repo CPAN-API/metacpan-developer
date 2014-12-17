@@ -1,152 +1,172 @@
-# Virtual development machine for the metacpan project
+# MetaCPAN Developer
 
-- You will need:
+- [Initial Setup](#initial)
+  - [Requirements](#requirements)
+  - [Setup Repos and VM](#setup)
+  - [API and Web Interface](#api)
+  - [Fork the Repo](#fork)
+- [Workflow](#workflow)
+  - [Run the Tests](#tests)
+  - [Make a Change](#change)
+  - [Restart the Service](#restart)
+  - [Update the VM](#update)
+  - [Make a Pull Request](#pr)
+- [Getting Help](#help)
 
-    - [Vagrant](http://www.vagrantup.com/downloads.html) (1.2.2 or later)
-    - [VirtualBox](https://www.virtualbox.org/), we recommend [4.3.10](https://www.virtualbox.org/wiki/Download_Old_Builds), see [guest additions](http://stackoverflow.com/questions/22717428/vagrant-error-failed-to-mount-folders-in-linux-guest) if you get mounting issues
-    - [A git client](http://git-scm.com/downloads)
-    - An ssh client if not build in, [Windows users see
-      this](http://docs-v1.vagrantup.com/v1/docs/getting-started/ssh.html).
-    - To be able to download about 900MB of data on the first run
+This is a virtual machine for the use of MetaCPAN contributors.  We do not recommend installing manually, but if you want to try it there are some instructions in the [puppet repository](https://github.com/CPAN-API/metacpan-puppet).
 
--  Check out this repo.
+For information on using MetaCPAN, see [the api docs](https://github.com/CPAN-API/cpan-api/blob/master/docs/API-docs.md).
 
-    ```bash
-    git clone git://github.com/CPAN-API/metacpan-developer.git
-    ```
+## <a name="initial"></a>Initial Setup
 
--  Set Up repositories
+### <a name="requirements"></a>Requirements
 
-    ```bash
-    cd metacpan-developer
-    sh bin/init.sh
-    ```
+* [Vagrant](http://www.vagrantup.com/downloads.html) (1.2.2 or later)
+* [VirtualBox](https://www.virtualbox.org/), we recommend [4.3.10](https://www.virtualbox.org/wiki/Download_Old_Builds), see [guest additions](http://stackoverflow.com/questions/22717428/vagrant-error-failed-to-mount-folders-in-linux-guest) if you get mounting issues
+* [A git client](http://git-scm.com/downloads)
+* An ssh client if not built in, [Windows users see this](http://docs-v1.vagrantup.com/v1/docs/getting-started/ssh.html).
+* To be able to download about 900MB of data on the first run
 
-- Start the virtual machine (first run will download our .box disk image
-  ~900MB)
+### <a name="setup"></a>Setup Repos and VM
 
-    ```bash
-    vagrant up
-    ```
+```bash
+git clone git://github.com/CPAN-API/metacpan-developer.git
+cd metacpan-developer
+sh bin/init.sh # clone all of the metacpan repos
+vagrant up # start the VM - will download the base box (900M) on the first run
+vagrant provision # necessary installation and configuration
+```
 
-- Run all the extra bits that were added after we created the .box file (you
-might need to run this each time you start up the machine or if we have made
-further changes)
+At this point you have a virtual machine with all of the MetaCPAN services up and running!  You can connect to it with:
 
-    ```bash
-    vagrant provision
-    ```
+```bash
+vagrant ssh
+```
 
-If you get this error when provisioning "err: Could not request certificate: Connection refused - connect(2)"
-then add the following to your /etc/resolv.conf as the first nameserver:
+### <a name="api"></a>API and Web Interface
 
-    ```bash
-    nameserver 8.8.8.8
-    ```
+The API and web interface are also forwarded to ports on your machine: [5000](http://localhost:5000/) and [5001](http://localhost:5001/) respectively.  
 
-So, your /etc/resolv.conf should look something like
+For simplicity, from now on we'll assume you're working on metacpan-web.  Working on the API is very similar - you can essentially replace 'web' with 'api' in the following instructions - except that you need to get some test data to use.  Instructions for that are [here](README_API.md).
 
-    ```bash
-    domain home
-    search home
-    nameserver 8.8.8.8
-    nameserver 10.0.2.3
-    ```
+Note that the web service connects to the *actual* metacpan api, not your local one.  If your patch changes both and you need to test them together, instructions for connecting them are in the [FAQ](FAQ.md).
 
-- Connect to the vm
+### <a name="fork"></a>Fork the Repo
 
-    ```bash
-    vagrant ssh
-    ```
+You'll need to make a fork of the repository you're working on; then instead of cloning that to your local machine, you can point the copy you already have to it.  
 
-- To edit and test
+```bash
+cd /path/to/metacpan-web
+git remote rename origin upstream
+git remote add origin git@github.com:username/metacpan-web.git
+```
 
-    Your workflow from this point will be to edit the MetaCPAN repositories
-    which you have just checkout out to your local machine.  After you have
-    made your changes, you can ssh to your box and restart the relevant
-    services.  You will not develop on the VM directly.
 
-    To install any missing (newly required) perl modules, as root run
+## <a name="workflow"></a>Workflow
 
-    ```bash
-     cd /home/vagrant
-     ./bin/<path shown below>
-    ```
-    It's good practice to add the new modules to the cpanfile in the respective repository. `vagrant provision` will install modules from cpanfile for you.
+### <a name="tests"></a>Run the Tests
 
-    - metacpan-web is the web front end
-        - /home/vagrant/bin/metacpan-web-carton
-        - mounted as /home/vagrant/metacpan-web
-        - sudo service starman_metacpan-web restart
-    - cpan-api is the backend that talks to the elasticsearch
-        - /home/vagrant/metacpan-api-carton
-        - mounted as /home/vagrant/metacpan-api
-        - sudo service starman_metacpan-api restart
-    - metacpan-puppet is the sysadmin/server setup
-        - mounted as /etc/puppet
-        - /etc/puppet/run.sh
+You'll want to run the suite at least once before getting started to make sure the VM has a clean bill of health.
 
-    Make changes in your checked out 'metacpan' repos and restart the service
-
-- To debug the changes in the code.
-
-    - For metacpan-web
-        - sudo service starman_metacpan-web restart
-    - For cpan-api
-        - sudo service starman_metacpan-api restart
-
-- To connect the web front-end to your local cpan-api backend.
-
-    At times you may have to make a few changes to the backend and reflect the same on the front end.
-    For Example: Setting up a new API endpoint.
-    metacpan-web by default uses the hosted api i.e https://api.metacpan.org as its backend.
-    To configure your local cpan-api, do the following.
-
-    - In the metacpan-web repository,
-    - Copy and Paste the `metacpan_web.conf` file and rename it as `metacpan_web_local.conf` that will contain:
-
-    ```
-    api                 http://127.0.0.1:5000
-    api_external        http://127.0.0.1:5000
-    api_secure          http://127.0.0.1:5000
-    api_external_secure http://127.0.0.1:5000
-    ```
-
-    - This local configuration file will be loaded on top of the existing config file.
-    - Do a vagrant reload after this or simply follow the debug steps that will reload this file.
-
-- To connect to services on the VM
-
-    WEB: [http://localhost:5001/](http://localhost:5001/)
-
-    API: [http://localhost:5000/](http://localhost:5000/)
-
-    SSH: `vagrant ssh`
-
-- Running the metacpan-web test suite
-
-    You'll want to run the suite at least once before getting started to make sure the VM has a clean bill of health.
-
-    ```bash
-     vagrant ssh
-     cd /home/vagrant/metacpan-web
-     ./bin/prove t
-    ```
+```bash
+ vagrant ssh
+ cd metacpan-web
+ ./bin/prove t
+```
 
 This recursively runs all the tests in the `t` directory in metacpan-web.  To do a partial run during development, specify the path to the file or directory containing the tests you want to run, for example:
 
-    ```bash
-    ./bin/prove t/model/release.t
-    ```
+```bash
+./bin/prove t/model/release.t
+```
 
 This will save time during development, but of course you should always run the full test suite before submitting a pull request.
 
-### More documentation
+### <a name="change"></a>Make a Change
 
- * [SETTING UP / TESTING THE API](README_API.md) page
- * [HELP](HELP.md) page (including VM tuning notes)
+The init script you ran during the initial setup cloned all of the metacpan repositories; then the Vagrant provisioning script mounted those repositories on the VM.  
 
-### Problems?
- * Check the [FAQs](FAQs.md) page for common issues faced during the development process.
- * If you have trouble mounting the folders, check this fix for [guest additions](http://stackoverflow.com/questions/22717428/vagrant-error-failed-to-mount-folders-in-linux-guest)
- * Ask on #metacpan (irc.perl.org), or open an [issue](https://github.com/CPAN-API/metacpan-developer/issues)
+So you can open a separate terminal and code on your own machine:
+
+```bash
+cd /path/to/metacpan-developer/src/metacpan-web
+git checkout -b MyBranch
+# hack hack hack
+git add somefile
+git commit -m"comments in somefile/ now are fully compliant/ with haiku spec, yay!"
+```
+
+The changes you make will show up on the VM and can be used next time you run the test suite.
+
+
+### <a name="restart"></a>Restart the Service
+
+The projects use Carton to manage dependencies.  This is very useful if you are, or might later be, working on more than one of them.  Even if you choose to install modules globally on the VM, remember to add them to the repository's cpanfile.
+
+If you've updated the cpanfile, you can run metacpan-web's carton from the vagrant user's home directory:
+
+```bash
+cd ~
+./bin/metacpan-web-carton
+```
+
+Next, restart the web service:
+
+```bash
+sudo service starman_metacpan-web restart 
+```
+
+Now you can go back and run the tests as described above.  Repeat until your code is sufficiently awesome.
+
+
+### <a name="update"></a>Update the VM
+
+If you're working on a long-lived branch, you should update the VM periodically.  Pull the master branch of metacpan-developer and all of the repos in src:
+
+```bash
+cd /path/to/metacpan-developer
+git checkout master
+git pull
+cd src/metacpan-puppet
+git checkout master
+git pull
+# etc
+```
+
+Then shut down the VM and bring it up again to ensure you are running the correct versions of all dependencies:  
+
+```bash
+vagrant halt
+vagrant up --provision
+```
+
+You may wish to write a script to automate this process.
+
+
+### <a name="pr"></a>Make a Pull Request
+
+You'll need to rebase off of master, which can be done on your machine:
+
+```bash
+cd /path/to/metacpan-web
+git checkout master
+git pull
+git checkout MyBranch
+git rebase master
+```
+
+Resolve any conflicts, then restart the service and run the test suite.  
+
+Here's a simple PR checklist:
+
+  * I've run the entire test suite and it passes
+  * I've committed all of the changes that are necessary for my patch to work
+  * I've added tests to show how my patch is supposed to behave
+  * I've added or edited comments and documentation as appropriate
+
+Now you can push to your fork and create a pull request - we look forward to seeing your work!
+
+
+## <a name="help"></a>Getting Help
+
+First, check the [FAQs](FAQs.md) page for common issues faced during the development process.  If your problem isn't solved there, join us on #metacpan (irc.perl.org), or open an [issue](https://github.com/CPAN-API/metacpan-developer/issues).
