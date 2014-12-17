@@ -4,7 +4,9 @@ This is a virtual machine for the use of MetaCPAN contributors.  We do not recom
 
 For information on using MetaCPAN, see [the api docs](https://github.com/CPAN-API/cpan-api/blob/master/docs/API-docs.md).
 
-## Requirements
+## Initial Setup
+
+### Requirements
 
 * [Vagrant](http://www.vagrantup.com/downloads.html) (1.2.2 or later)
 * [VirtualBox](https://www.virtualbox.org/), we recommend [4.3.10](https://www.virtualbox.org/wiki/Download_Old_Builds), see [guest additions](http://stackoverflow.com/questions/22717428/vagrant-error-failed-to-mount-folders-in-linux-guest) if you get mounting issues
@@ -12,8 +14,7 @@ For information on using MetaCPAN, see [the api docs](https://github.com/CPAN-AP
 * An ssh client if not built in, [Windows users see this](http://docs-v1.vagrantup.com/v1/docs/getting-started/ssh.html).
 * To be able to download about 900MB of data on the first run
 
-
-## Initial Setup
+### Setup Repos and VM
 
 ```bash
 git clone git://github.com/CPAN-API/metacpan-developer.git
