@@ -6,6 +6,9 @@ I am completely new to MetaCPAN. What material could I refer to, to get acquaint
       - http://www.slideshare.net/oalders/meta-cpan-vmparttwo
       - www.slideshare.net/oalders/abusing-metacpan2013
    - We also maintain a 'metacpan-examples' repository so that you can try the examples out yourself. This will be cloned along with the other repos in the /src folder.
+   - If you are also new to Catalyst, you can check out these links.
+      - https://metacpan.org/pod/Catalyst::Manual
+      - http://www.linuxjournal.com/content/introduction-application-development-catalyst-and-perl
 
 ---------------------------------------------------------------------------------------------------------------------
 
