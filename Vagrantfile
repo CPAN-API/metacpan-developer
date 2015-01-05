@@ -8,12 +8,10 @@ Vagrant.configure("2") do |config|
     ENV[key] ? ["--#{hw}", ENV[key]] : []
   end.flatten
 
-  if not vbox_custom.empty?
-    config.vm.provider :virtualbox do |vb|
-      vb.customize [
-        "modifyvm", :id,
-        *vbox_custom
-      ]
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    if not vbox_custom.empty?
+      vb.customize [ "modifyvm", :id, *vbox_custom ]
     end
   end
 
