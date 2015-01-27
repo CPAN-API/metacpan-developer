@@ -49,7 +49,7 @@ The API and web interface are also forwarded to ports on your machine: [5000](ht
 
 For simplicity, from now on we'll assume you're working on metacpan-web.  Working on the API is very similar - you can essentially replace 'web' with 'api' in the following instructions - except that you need to get some test data to use.  Instructions for that are [here](README_API.md).
 
-Note that the web service connects to the *actual* metacpan api, not your local one.  If your patch changes both and you need to test them together, instructions for connecting them are in the [FAQ](FAQ.md).
+Note that the web service connects to the *actual* metacpan api, not your local one.  If your patch changes both and you need to test them together, instructions for connecting them are in the [FAQ](FAQs.md).
 
 ### <a name="fork"></a>Fork the Repo
 
