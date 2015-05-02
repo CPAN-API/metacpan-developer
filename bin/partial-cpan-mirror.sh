@@ -14,3 +14,5 @@ $RSYNC $PATH/authors/id/R/RW/RWSTAUNER  $MINICPAN/
 
 $RSYNC $PATH/authors/0*                 $MINICPAN/
 $RSYNC $PATH/modules/0*                 $MINICPAN/
+
+$RSYNC $PATH/indices/mirrors.json       $MINICPAN/
