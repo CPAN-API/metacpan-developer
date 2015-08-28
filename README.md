@@ -68,6 +68,8 @@ git remote add origin git@github.com:username/metacpan-web.git
 
 You'll want to run the suite at least once before getting started to make sure the VM has a clean bill of health.
 
+*NOTE:* `./bin/prove` is _not_ the system `prove` but the one in the metacpan-web (or metacpan-api) bin directory.
+
 ```bash
  vagrant ssh
  cd metacpan-web
