@@ -37,6 +37,8 @@ vagrant up # start the VM - will download the base box (900M) on the first run
 vagrant provision # necessary installation and configuration
 ```
 
+`vagrant provision` can be run multple times, and includes running the puppet setup (which will also install any Carton dependencies, though there are instructions below for doing this manually as well). Warnings in the puppet setup (in red) are usually ok, Errors are not.
+
 At this point you have a virtual machine with all of the MetaCPAN services up and running!  You can connect to it with:
 
 ```bash
