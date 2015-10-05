@@ -19,6 +19,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.network "forwarded_port", guest: 5000, host: 5000 # api
   config.vm.network "forwarded_port", guest: 5001, host: 5001 # www
+  config.vm.network "forwarded_port", guest: 5002, host: 5002 # gmc
   config.vm.network "forwarded_port", guest: 80, host: 5080 # nginx http
   config.vm.network "forwarded_port", guest: 443, host: 5443 # nginx https
   config.vm.network "forwarded_port", guest: 9200, host: 9200 # production ES
@@ -28,4 +29,5 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder('src/metacpan-api', '/home/vagrant/metacpan-api')
   config.vm.synced_folder('src/metacpan-web', '/home/vagrant/metacpan-web')
   config.vm.synced_folder('src/metacpan-explorer', '/home/vagrant/metacpan-explorer')
+  config.vm.synced_folder('src/github-meets-cpan', '/home/vagrant/github-meets-cpan')
 end
