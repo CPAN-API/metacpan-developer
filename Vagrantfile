@@ -15,8 +15,6 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  config.vm.provision :shell, :path => 'provision/all.sh'
-
   config.vm.network "forwarded_port", guest: 5000, host: 5000 # api
   config.vm.network "forwarded_port", guest: 5001, host: 5001 # www
   config.vm.network "forwarded_port", guest: 5002, host: 5002 # gmc
@@ -25,9 +23,11 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 9200, host: 9200 # production ES
   config.vm.network "forwarded_port", guest: 9900, host: 9900 # test ES
 
-  config.vm.synced_folder('src/metacpan-puppet', '/etc/puppet')
-  config.vm.synced_folder('src/metacpan-api', '/home/vagrant/metacpan-api')
-  config.vm.synced_folder('src/metacpan-web', '/home/vagrant/metacpan-web')
-  config.vm.synced_folder('src/metacpan-explorer', '/home/vagrant/metacpan-explorer')
-  config.vm.synced_folder('src/github-meets-cpan', '/home/vagrant/github-meets-cpan')
+  config.vm.synced_folder "src/metacpan-puppet", "/etc/puppet"
+  config.vm.synced_folder "src/metacpan-api", "/home/vagrant/metacpan-api"
+  config.vm.synced_folder "src/metacpan-web", "/home/vagrant/metacpan-web"
+  config.vm.synced_folder "src/metacpan-explorer", "/home/vagrant/metacpan-explorer"
+  config.vm.synced_folder "src/github-meets-cpan", "/home/vagrant/github-meets-cpan"
+
+  config.vm.provision :shell, :path => 'provision/all.sh'
 end
