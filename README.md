@@ -102,6 +102,15 @@ git commit -m"comments in somefile/ now are fully compliant/ with haiku spec, ya
 
 The changes you make will show up on the VM and can be used next time you run the test suite.
 
+## Installing Dependencies
+
+If you need to add or update a module, make the change in the `cpanfile` of the
+repository.  In order to install the module you can either run `vagrant
+provision` (which is slow) or run a carton wrapper for your repository (which
+is fast).  For example, if you've added a dependency to
+`metacpan-api/cpanfile`, you can run `sh /home/vagrant/bin/metacpan-api-carton
+install`.
+
 
 ### <a name="restart"></a>Restart the Service
 
