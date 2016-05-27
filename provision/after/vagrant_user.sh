@@ -7,7 +7,7 @@ function user_source_metacpanrc () {
   local rc="$home/.metacpanrc" shrc="$home/.bashrc"
   local line="source $rc"
 
-  echo 'PATH=/opt/perl-5.18.2/bin:$PATH' > "$rc"
+  echo 'PATH=/opt/perl-5.22.2/bin:$PATH' > "$rc"
 
   grep -qFx "$line" "$shrc" || echo "$line" >> "$shrc"
 
