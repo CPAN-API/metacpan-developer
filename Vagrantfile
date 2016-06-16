@@ -1,8 +1,8 @@
 ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
 
 Vagrant.configure("2") do |config|
-  config.vm.box_url = "http://vmbox.metacpan.org/mcwheezy_vm_debian_005_32.box"
-  config.vm.box = "mcbase_005"
+  config.vm.box_url = "http://vmbox.metacpan.org/mcwheezy_vm_debian_006_32.box"
+  config.vm.box = "mcbase_006"
 
   # Use METACPAN_DEVELOPER_* env vars to set vm hardware resources.
   vbox_custom = %w[cpus memory].map do |hw|
