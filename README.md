@@ -13,9 +13,9 @@
   - [Make a Pull Request](#pr)
 - [Getting Help](#help)
 
-This is a virtual machine for the use of MetaCPAN contributors.  We do not recommend installing manually, but if you want to try it there are some instructions in the [puppet repository](https://github.com/CPAN-API/metacpan-puppet).
+This is a virtual machine for the use of MetaCPAN contributors.  We do not recommend installing manually, but if you want to try it there are some instructions in the [puppet repository](https://github.com/metacpan/metacpan-puppet).
 
-For information on using MetaCPAN, see [the api docs](https://github.com/CPAN-API/cpan-api/blob/master/docs/API-docs.md).
+For information on using MetaCPAN, see [the api docs](https://github.com/metacpan/metacpan-api/blob/master/docs/API-docs.md).
 
 ## <a name="initial"></a>Initial Setup
 
@@ -30,7 +30,7 @@ For information on using MetaCPAN, see [the api docs](https://github.com/CPAN-AP
 ### <a name="setup"></a>Setup Repos and VM
 
 ```bash
-git clone git://github.com/CPAN-API/metacpan-developer.git
+git clone git://github.com/metacpan/metacpan-developer.git
 cd metacpan-developer
 sh bin/init.sh # clone all of the metacpan repos
 vagrant up # start the VM - will download the base box (900M) on the first run
@@ -47,7 +47,7 @@ vagrant ssh
 
 ### <a name="api"></a>API and Web Interface
 
-The API and web interface are also forwarded to ports on your machine: [5000](http://localhost:5000/) and [5001](http://localhost:5001/) respectively.  
+The API and web interface are also forwarded to ports on your machine: [5000](http://localhost:5000/) and [5001](http://localhost:5001/) respectively.
 
 For simplicity, from now on we'll assume you're working on metacpan-web.  Working on the API is very similar - you can essentially replace 'web' with 'api' in the following instructions - except that you need to get some test data to use.  Instructions for that are [here](README_API.md).
 
@@ -55,7 +55,7 @@ Note that the web service connects to the *actual* metacpan api, not your local 
 
 ### <a name="fork"></a>Fork the Repo
 
-You'll need to make a fork of the repository you're working on; then instead of cloning that to your local machine, you can point the copy you already have to it.  
+You'll need to make a fork of the repository you're working on; then instead of cloning that to your local machine, you can point the copy you already have to it.
 
 ```bash
 cd /path/to/metacpan-web
@@ -88,7 +88,7 @@ This will save time during development, but of course you should always run the 
 
 ### <a name="change"></a>Make a Change
 
-The init script you ran during the initial setup cloned all of the metacpan repositories; then the Vagrant provisioning script mounted those repositories on the VM.  
+The init script you ran during the initial setup cloned all of the metacpan repositories; then the Vagrant provisioning script mounted those repositories on the VM.
 
 So you can open a separate terminal and code on your own machine:
 
@@ -126,7 +126,7 @@ cd ~
 Next, restart the web service:
 
 ```bash
-sudo service starman_metacpan-web restart 
+sudo service starman_metacpan-web restart
 ```
 
 Now you can go back and run the tests as described above.  Repeat until your code is sufficiently awesome.
@@ -146,7 +146,7 @@ git pull
 # etc
 ```
 
-Then shut down the VM and bring it up again to ensure you are running the correct versions of all dependencies:  
+Then shut down the VM and bring it up again to ensure you are running the correct versions of all dependencies:
 
 ```bash
 vagrant halt
@@ -168,7 +168,7 @@ git checkout MyBranch
 git rebase master
 ```
 
-Resolve any conflicts, then restart the service and run the test suite.  
+Resolve any conflicts, then restart the service and run the test suite.
 
 Here's a simple PR checklist:
 
@@ -182,4 +182,4 @@ Now you can push to your fork and create a pull request - we look forward to see
 
 ## <a name="help"></a>Getting Help
 
-First, check the [FAQs](FAQs.md) page for common issues faced during the development process.  If your problem isn't solved there, join us on #metacpan (irc.perl.org), or open an [issue](https://github.com/CPAN-API/metacpan-developer/issues).
+First, check the [FAQs](FAQs.md) page for common issues faced during the development process.  If your problem isn't solved there, join us on #metacpan (irc.perl.org), or open an [issue](https://github.com/metacpan/metacpan-developer/issues).
