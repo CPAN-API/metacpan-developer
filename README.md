@@ -45,6 +45,15 @@ At this point you have a virtual machine with all of the MetaCPAN services up an
 vagrant ssh
 ```
 
+### Seed Elasticsearch
+
+Running this script will set up the Elasticsearch mappings, fetch some CPAN modules and index them for you.
+
+```bash
+vagrant ssh
+sh /vagrant/bin/index-cpan.sh
+```
+
 ### <a name="api"></a>API and Web Interface
 
 The API and web interface are also forwarded to ports on your machine: [5000](http://localhost:5000/) and [5001](http://localhost:5001/) respectively.
