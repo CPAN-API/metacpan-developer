@@ -71,7 +71,7 @@ Ran into some error you don't understand? Read on to see if it's a commonly face
    - Make sure it is present in authors/02authors.txt.gz file.
    - Enter your PAUSE id normally as you would for looging into metacpan.org
    - It'll say that a link has been mailed to your mail id. But obviously you did not receive this mail.
-   - The link is present in /home/metacpan/api.metacpan.org/var/tmp/mail/new/(mail-link)
+   - The link is present in /var/tmp/metacpan/starman/metacpan-api/mail/new/(mail-link)
    - Simply click on the link to log into MetaCPAN through your local machine.
 
 
