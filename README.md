@@ -75,6 +75,15 @@ git remote add origin git@github.com:username/metacpan-web.git
 
 ## <a name="workflow"></a>Workflow
 
+### <a name="plackup"></a>Running plackup in Your Terminal
+
+```bash
+./bin/run plackup --port 5001
+```
+
+`metacpan-web` runs on port 5001.  `metacpan-api` runs on port 5000.
+
+
 ### <a name="tests"></a>Run the Tests
 
 You'll want to run the suite at least once before getting started to make sure the VM has a clean bill of health.
