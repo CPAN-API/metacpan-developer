@@ -11,6 +11,7 @@
   - [Restart the Service](#restart)
   - [Update the VM](#update)
   - [Make a Pull Request](#pr)
+- [Creating a New Box From Scratch](#scratch)
 - [Getting Help](#help)
 
 This is a virtual machine for the use of MetaCPAN contributors.  We do not recommend installing manually, but if you want to try it there are some instructions in the [puppet repository](https://github.com/metacpan/metacpan-puppet).
@@ -197,6 +198,21 @@ Here's a simple PR checklist:
 
 Now you can push to your fork and create a pull request - we look forward to seeing your work!
 
+
+## <a name="scratch"></a>Creating a New Box From Scratch
+
+The instructions in the `metacpan-vagrant` repository have now been obviated.  Instead:
+
+```bash
+vagrant destroy
+VAGRANT_VAGRANTFILE=box-builder/Vagrantfile vagrant up
+VAGRANT_VAGRANTFILE=box-builder/Vagrantfile vagrant halt
+vagrant up --provision
+```
+
+This will run an initial provision with the box-builder Vagrantfile.  Once the
+initial bootstrapping is in place, we just re-provision with the standard
+Vagrantfile.
 
 ## <a name="help"></a>Getting Help
 
