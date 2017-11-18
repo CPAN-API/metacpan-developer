@@ -32,7 +32,7 @@ For information on using MetaCPAN, see [the api docs](https://github.com/metacpa
 ```bash
 git clone git://github.com/metacpan/metacpan-developer.git
 cd metacpan-developer
-sh bin/init.sh # clone all of the metacpan repos
+./bin/init.sh # recursively clone all of the metacpan repos
 vagrant up # start the VM - will download the base box (900M) on the first run
 vagrant provision # necessary installation and configuration
 ```
