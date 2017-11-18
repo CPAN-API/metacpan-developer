@@ -1,19 +1,23 @@
-#!/bin/sh
+#!/bin/bash
+
+set -o errexit
+set -e -o pipefail
 
 mkdir -p src
-cd src
+pushd src
 
-git clone git://github.com/metacpan/metacpan-puppet.git
-git clone git://github.com/metacpan/metacpan-api.git
-git clone git://github.com/metacpan/metacpan-web.git
-git clone git://github.com/metacpan/metacpan-explorer.git
-git clone git://github.com/metacpan/github-meets-cpan.git
+git clone --recursive git://github.com/metacpan/github-meets-cpan.git
+git clone --recursive git://github.com/metacpan/metacpan-api.git
+git clone --recursive git://github.com/metacpan/metacpan-explorer.git
+git clone --recursive git://github.com/metacpan/metacpan-puppet.git
+git clone --recursive git://github.com/metacpan/metacpan-web.git
 
-cd metacpan-web
+# set up Git hooks
+pushd metacpan-web
 sh git/setup.sh
-cd ..
+popd
 
-cd metacpan-api
+pushd metacpan-api
 sh git/setup.sh
 
 if ! [ -e metacpan_server_local.conf ]; then
