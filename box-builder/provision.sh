@@ -23,7 +23,7 @@ dpkg -i $DEB
 
 apt-get update
 
-apt-get -q --assume-yes install dirmngr vim sudo openssh-server git
+apt-get -q --assume-yes install dirmngr vim sudo openssh-server git aptitude
 apt-get -q --assume-yes install puppetmaster puppet
 
 # We don't want puppet running automatically
