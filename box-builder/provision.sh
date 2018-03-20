@@ -5,6 +5,13 @@ set -e -o pipefail
 
 echo "vagrant provision: $0"
 
+# https://serverfault.com/a/500778/119512
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+locale-gen en_US.UTF-8
+dpkg-reconfigure --frontend=noninteractive locales
+
 # run.sh (in metacpan-puppet) won't run until this is done:
 hosts_line="127.0.0.1    puppet"
 grep -F "$hosts_line" /etc/hosts || echo $'\n\n# puppet (run.sh)\n'"$hosts_line" >> /etc/hosts
