@@ -28,15 +28,26 @@ For information on using MetaCPAN, see [the api docs](https://github.com/metacpa
 * An ssh client if not built in, [Windows users see this](http://docs-v1.vagrantup.com/v1/docs/getting-started/ssh.html).
 * To be able to download about 900MB of data on the first run
 
-### <a name="setup"></a>Setup Repos and VM
+### <a name="setup"></a>Set Up Repos and VM
 
 ```bash
 git clone git://github.com/metacpan/metacpan-developer.git
 cd metacpan-developer
 ./bin/init.sh # recursively clone all of the metacpan repos
-vagrant up # start the VM - will download the base box (900M) on the first run
-vagrant provision # necessary installation and configuration
 ```
+
+If you have an older box (pre Debian stretch): `vagrant destroy` so that you
+can build a new box.
+
+```bash
+VAGRANT_VAGRANTFILE=box-builder/Vagrantfile vagrant up
+VAGRANT_VAGRANTFILE=box-builder/Vagrantfile vagrant halt
+DEBIAN_FRONTEND=noninteractive vagrant up --provision
+```
+
+This will run an initial provision with the box-builder Vagrantfile.  Once the
+initial bootstrapping is in place, we just re-provision with the standard
+Vagrantfile.
 
 `vagrant provision` can be run multiple times, and includes running the puppet setup (which will also install any Carton dependencies, though there are instructions below for doing this manually as well). Warnings in the puppet setup (in red) are usually ok, Errors are not.
 
@@ -198,21 +209,6 @@ Here's a simple PR checklist:
 
 Now you can push to your fork and create a pull request - we look forward to seeing your work!
 
-
-## <a name="scratch"></a>Creating a New Box From Scratch
-
-The instructions in the `metacpan-vagrant` repository have now been obviated.  Instead:
-
-```bash
-vagrant destroy
-VAGRANT_VAGRANTFILE=box-builder/Vagrantfile vagrant up
-VAGRANT_VAGRANTFILE=box-builder/Vagrantfile vagrant halt
-vagrant up --provision
-```
-
-This will run an initial provision with the box-builder Vagrantfile.  Once the
-initial bootstrapping is in place, we just re-provision with the standard
-Vagrantfile.
 
 ## <a name="help"></a>Getting Help
 
