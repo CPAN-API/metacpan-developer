@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 sudo service elasticsearch-es-01 start
 
@@ -6,7 +6,7 @@ cd ~/metacpan-api
 
 ./bin/run bin/metacpan mapping
 
-sh /vagrant/bin/partial-cpan-mirror.sh
+bash /vagrant/bin/guest/partial-cpan-mirror.sh
 
 export MINICPAN=$HOME/CPAN
 

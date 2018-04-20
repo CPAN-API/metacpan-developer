@@ -33,7 +33,7 @@ For information on using MetaCPAN, see [the api docs](https://github.com/metacpa
 ```bash
 git clone git://github.com/metacpan/metacpan-developer.git
 cd metacpan-developer
-./bin/init.sh # recursively clone all of the metacpan repos
+./bin/host/init.sh # recursively clone all of the metacpan repos
 ```
 
 If you have an older box (pre Debian stretch): `vagrant destroy` so that you
@@ -63,7 +63,7 @@ Running this script will set up the Elasticsearch mappings, fetch some CPAN modu
 
 ```bash
 vagrant ssh
-sh /vagrant/bin/index-cpan.sh
+bash /vagrant/bin/guest/index-cpan.sh
 ```
 
 ### <a name="api"></a>API and Web Interface
