@@ -10,6 +10,15 @@ Vagrant.configure("2") do |config|
         ENV[key] ? ["--#{hw}", ENV[key]] : []
     end.flatten
 
+$msg = <<MSG
+------------------------------------------------------
+The API is available on port 5000
+The web frontend is available on port 5001
+------------------------------------------------------
+MSG
+
+    config.vm.post_up_message = $msg
+
     config.vm.provider :virtualbox do |vb|
         vb.name = "metacpan-stretch"
         vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
