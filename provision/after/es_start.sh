@@ -3,5 +3,6 @@
 service=elasticsearch-es-01
 initd=/etc/init.d
 [[ -x $initd/$service ]] || service=elasticsearch
+sudo systemctl unmask $service
 
-service $service restart
+systemctl restart $service
