@@ -40,6 +40,7 @@ MSG
     config.vm.synced_folder "src/metacpan-web", "/home/vagrant/metacpan-web"
     config.vm.synced_folder "src/metacpan-explorer", "/home/vagrant/metacpan-explorer"
     config.vm.synced_folder "src/github-meets-cpan", "/home/vagrant/github-meets-cpan"
+    config.vm.synced_folder "bin", "/vagrant/bin"
 
     config.vm.provision :shell, :path => 'provision/all.sh'
 end
