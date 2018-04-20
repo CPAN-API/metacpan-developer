@@ -36,10 +36,10 @@ MSG
     config.vm.network "forwarded_port", guest: 9900, host: 9900 # test ES
 
     config.vm.synced_folder "src/metacpan-puppet", "/etc/puppet", owner: "puppet", group: "puppet"
-    config.vm.synced_folder "src/metacpan-api", "/home/vagrant/metacpan-api"
-    config.vm.synced_folder "src/metacpan-web", "/home/vagrant/metacpan-web"
-    config.vm.synced_folder "src/metacpan-explorer", "/home/vagrant/metacpan-explorer"
-    config.vm.synced_folder "src/github-meets-cpan", "/home/vagrant/github-meets-cpan"
+    config.vm.synced_folder "src/metacpan-api", "/home/vagrant/metacpan-api", type: "rsync", rsync__args: ["--verbose", "--archive", "--delete", "-z"]
+    config.vm.synced_folder "src/metacpan-web", "/home/vagrant/metacpan-web", type: "rsync", rsync__args: ["--verbose", "--archive", "--delete", "-z"]
+    config.vm.synced_folder "src/metacpan-explorer", "/home/vagrant/metacpan-explorer", type: "rsync", rsync__args: ["--verbose", "--archive", "--delete", "-z"]
+    config.vm.synced_folder "src/github-meets-cpan", "/home/vagrant/github-meets-cpan", type: "rsync", rsync__args: ["--verbose", "--archive", "--delete", "-z"]
 
     config.vm.provision :shell, :path => 'provision/all.sh'
 end
