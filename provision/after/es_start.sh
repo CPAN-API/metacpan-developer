@@ -1,7 +1,6 @@
 #!/bin/bash
 
 service=elasticsearch-es-01
-initd=/etc/init.d
-[[ -x $initd/$service ]] || service=elasticsearch
+[[ -e /etc/default/$service ]] || service=elasticsearch
 
-service $service restart
+sudo systemctl restart $service

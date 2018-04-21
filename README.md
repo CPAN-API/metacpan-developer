@@ -11,6 +11,7 @@
   - [Restart the Service](#restart)
   - [Update the VM](#update)
   - [Make a Pull Request](#pr)
+- [Creating a New Box From Scratch](#scratch)
 - [Getting Help](#help)
 
 This is a virtual machine for the use of MetaCPAN contributors.  We do not recommend installing manually, but if you want to try it there are some instructions in the [puppet repository](https://github.com/metacpan/metacpan-puppet).
@@ -27,15 +28,26 @@ For information on using MetaCPAN, see [the api docs](https://github.com/metacpa
 * An ssh client if not built in, [Windows users see this](http://docs-v1.vagrantup.com/v1/docs/getting-started/ssh.html).
 * To be able to download about 900MB of data on the first run
 
-### <a name="setup"></a>Setup Repos and VM
+### <a name="setup"></a>Set Up Repos and VM
 
 ```bash
 git clone git://github.com/metacpan/metacpan-developer.git
 cd metacpan-developer
-./bin/init.sh # recursively clone all of the metacpan repos
-vagrant up # start the VM - will download the base box (900M) on the first run
-vagrant provision # necessary installation and configuration
+./bin/host/init.sh # recursively clone all of the metacpan repos
 ```
+
+If you have an older box (pre Debian stretch): `vagrant destroy` so that you
+can build a new box.
+
+```bash
+VAGRANT_VAGRANTFILE=box-builder/Vagrantfile vagrant up
+VAGRANT_VAGRANTFILE=box-builder/Vagrantfile vagrant halt
+DEBIAN_FRONTEND=noninteractive vagrant up --provision
+```
+
+This will run an initial provision with the box-builder Vagrantfile.  Once the
+initial bootstrapping is in place, we just re-provision with the standard
+Vagrantfile.
 
 `vagrant provision` can be run multiple times, and includes running the puppet setup (which will also install any Carton dependencies, though there are instructions below for doing this manually as well). Warnings in the puppet setup (in red) are usually ok, Errors are not.
 
@@ -51,7 +63,7 @@ Running this script will set up the Elasticsearch mappings, fetch some CPAN modu
 
 ```bash
 vagrant ssh
-sh /vagrant/bin/index-cpan.sh
+bash /vagrant/bin/guest/index-cpan.sh
 ```
 
 ### <a name="api"></a>API and Web Interface
