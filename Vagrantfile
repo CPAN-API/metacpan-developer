@@ -35,12 +35,13 @@ MSG
     config.vm.network "forwarded_port", guest: 9200, host: 9200 # production ES
     config.vm.network "forwarded_port", guest: 9900, host: 9900 # test ES
 
+    config.vm.synced_folder '.', '/vagrant', disabled: true
+    config.vm.synced_folder "bin", "/vagrant/bin"
     config.vm.synced_folder "src/metacpan-puppet", "/etc/puppet", owner: "puppet", group: "puppet"
     config.vm.synced_folder "src/metacpan-api", "/home/vagrant/metacpan-api"
     config.vm.synced_folder "src/metacpan-web", "/home/vagrant/metacpan-web"
     config.vm.synced_folder "src/metacpan-explorer", "/home/vagrant/metacpan-explorer"
     config.vm.synced_folder "src/github-meets-cpan", "/home/vagrant/github-meets-cpan"
-    config.vm.synced_folder "bin", "/vagrant/bin"
 
     config.vm.provision :shell, :path => 'provision/all.sh'
 end
