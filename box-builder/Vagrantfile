@@ -6,9 +6,23 @@ ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
 # * VAGRANT_VAGRANTFILE=box-builder/Vagrantfile vagrant up
 # * VAGRANT_VAGRANTFILE=box-builder/Vagrantfile vagrant halt
 # * vagrant up --provision
+#
+# To use more resources:
+# METACPAN_DEVELOPER_CPUS=4 METACPAN_DEVELOPER_MEMORY=16384 VAGRANT_VAGRANTFILE=box-builder/Vagrantfile vagrant up
 
 Vagrant.configure("2") do |config|
     config.vm.box = "debian/stretch64"
+    config.vm.hostname = "metacpan-dev"
+
+$msg = <<MSG
+Run the following commands to finish building your box:
+------------------------------------------------------
+VAGRANT_VAGRANTFILE=box-builder/Vagrantfile vagrant halt
+vagrant up --provision
+------------------------------------------------------
+MSG
+
+    config.vm.post_up_message = $msg
 
     # Use METACPAN_DEVELOPER_* env vars to set vm hardware resources.
     vbox_custom = %w[cpus memory].map do |hw|
