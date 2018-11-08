@@ -1,4 +1,5 @@
-.vagrant
-.vagrant_ssh_as_metacpan_user
+*.box
 .DS_Store
 src
+.vagrant
+.vagrant_ssh_as_metacpan_user
