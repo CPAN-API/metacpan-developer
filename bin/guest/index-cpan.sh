@@ -4,8 +4,7 @@ sudo service elasticsearch-es-01 start
 
 cd ~/metacpan-api
 
-./bin/run bin/metacpan mapping
-
+./bin/run bin/metacpan mapping --delete
 bash /vagrant/bin/guest/partial-cpan-mirror.sh
 
 export MINICPAN=$HOME/CPAN
