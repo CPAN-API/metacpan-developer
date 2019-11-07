@@ -1,3 +1,11 @@
+# !! Deprecated !!
+
+## Please do not begin any new development using this project
+
+All new development should be done using [https://github.com/metacpan/metacpan-docker](https://github.com/metacpan/metacpan-docker)
+
+# !! Deprecated !!
+
 # MetaCPAN Developer
 
 - [Initial Setup](#initial)
